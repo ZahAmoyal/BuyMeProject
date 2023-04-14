@@ -18,21 +18,24 @@ public class ChooseGiftTest extends BaseTest {
 
     @Before
     public void setUp() {
-        driver.get("https://buyme.co.il/package/2712/30932");
+        driver.get("https://buyme.co.il");
         driver.manage().window().maximize();
     }
 
 
     @Test
     public void choose_A_Gift() throws Exception {
-        //SenderReceiverInformationTest.chooseGift();
+        SenderReceiverInformationTest.chooseGift();
         isSelected_someOneElse();
         nameOfReceivesA_giftField();
         clickEvent();
         writingField();
         click_uploadPicture();
         click_submit();
-
+        //ChooseGiftPage.nowRadioButton_select();
+        ChooseGiftPage.click_sms();
+        ChooseGiftPage.phoneNumberField();
+        ChooseGiftPage.nameField();
     }
 
 

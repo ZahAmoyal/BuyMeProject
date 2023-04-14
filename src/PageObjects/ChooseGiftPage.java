@@ -49,12 +49,13 @@ public class ChooseGiftPage extends BasePage {
         Thread.sleep(500);
         WebElement industries = driver.findElement(By.cssSelector(".ember-view.bm-field.bm-select.show-options.with-icon.empty.md.with-label"));
         List<WebElement> events = industries.findElements(By.cssSelector(".ember-view.bm-select-option"));
+        for (WebElement element : events) {
+            System.out.println(element.getText());
+        }
         int num = (randomNum(events.size()));
         String id = events.get(num).getAttribute("id");
         Thread.sleep(500);
-        System.out.println(id);
-
-
+        industries.findElement(By.cssSelector("li[id="+id+"]")).click();
 
     }
 
@@ -65,6 +66,7 @@ public class ChooseGiftPage extends BasePage {
     public static void click_uploadPicture() {
         click(uploadPicture);
     }
+    //driver.findElement(By.id(browseButton)).sendKeys("<absolutePathToMyFile>");
 
     public static void click_submit() {
         click(submit);
@@ -81,11 +83,11 @@ public class ChooseGiftPage extends BasePage {
     }
 
     public ChooseGiftPage phoneNumberField() throws Exception {
-        writeText(phoneNumber, (readFromFile("firstName")));
+        writeText(phoneNumber, (readFromFile("0543103356")));
         return this;
     }
 
-    public ChooseGiftPage nameField(String nameF) throws Exception {
+    public ChooseGiftPage nameField() throws Exception {
         writeText(name, (readFromFile("firstName")));
         return this;
     }

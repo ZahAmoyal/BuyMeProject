@@ -20,7 +20,7 @@ public class SenderReceiverInformationTest extends BaseTest {
     }
 
     @Test
-    public void chooseGift() throws Exception {
+    public static void chooseGift() throws Exception {
         HomeTest.checkCategory();
         choosing_A_gift();
         choosing_A_gift_from_a_list();

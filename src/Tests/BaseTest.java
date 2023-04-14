@@ -30,9 +30,9 @@ import static org.openqa.selenium.By.tagName;
 public class BaseTest {
     public static WebDriver driver;
     static String reportFilePath = "C:\\project\\Project1.html";
-    static String chromeD = "src/PageObjects/chromedriver.exe";
+    static String chromeD = "src/Data/chromedriver.exe";
     static String ImagePath = "C:\\project\\ScreenShot";
-    static String readFromFilePath = "src/PageObjects/Config2.xml";
+    static String readFromFilePath = "src/Data/Config2.xml";
     static ExtentReports extent;
     static ExtentTest myTests;
     static BasePage BasePage;
@@ -96,7 +96,7 @@ public class BaseTest {
 
     @AfterClass
     public static void closeDriver() throws InterruptedException {
-        Thread.sleep(20000);
+        Thread.sleep(3000);
         driver.close();
         driver.quit();
         extent.flush();
@@ -174,13 +174,14 @@ public class BaseTest {
         //System.out.println(zah1.get(i).getText());
         //}
         System.out.println(zah1.size());
-        int num = randomNum(zah1.size() + 1);
+        int num = randomNum(zah1.size());
         //System.out.println(zah1.get(num).getText()+num);
         // WebElement choose = industries.findElement(By.partialLinkText((zah1.get(num).getText())));
         WebElement choose = industries.findElement(By.cssSelector("li.ember-view.bm-gift-card-link"));
         //choose.click();
         //System.out.println(choose.getText());
         // boolean dis= choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).isDisplayed();//label.ember-view.bm-field.bm-input.empty.blur.with-icon.md.no-label"));
+        //PageObjects.BasePage.waitVisibility((By) choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")));
         if (choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).isDisplayed()) {
             choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).sendKeys("500");
             WebElement submit = choose.findElement(By.tagName("button"));//zah1.get(num).findElement(By.cssSelector("div[class='bottom bm-subtitle-1'] button"));
