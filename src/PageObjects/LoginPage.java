@@ -9,14 +9,14 @@ public class LoginPage extends BasePage {
     }
 
     By registerButton = By.cssSelector("[class=\"text-link theme\"]");
-    By login_RegisterButton = By.cssSelector("[class=\\\"notSigned\\\"]");
-    By xButton = By.cssSelector("[id=\"times\"]");
-    By facebookButton =By.cssSelector("[class=\"social-btn facebook\"]");
-    By googleButton = By.cssSelector("[class=\"social-btn google\"]");
+    //By login_RegisterButton = By.cssSelector("[class=\\\"notSigned\\\"]");
+    //By xButton = By.cssSelector("[id=\"times\"]");
+    //By facebookButton =By.cssSelector("[class=\"social-btn facebook\"]");
+   // By googleButton = By.cssSelector("[class=\"social-btn google\"]");
     By emailField = By.cssSelector("[placeholder=\"מייל\"]");
     By passwordField = By.cssSelector("[placeholder=\"סיסמה\"]");
-    By forgotPasswordLink = By.cssSelector("[class=\"bm-body-2 text-link theme db\"]");
-    By rememberMeCheckBox = By.cssSelector(".ember-view.bm-checkbox.checked [class=\"fill\"]");
+    //By forgotPasswordLink = By.cssSelector("[class=\"bm-body-2 text-link theme db\"]");
+    //By rememberMeCheckBox = By.cssSelector(".ember-view.bm-checkbox.checked [class=\"fill\"]");
     By loginToBuyMe = By.cssSelector("[type=\"submit\"]");
 
 

@@ -1,12 +1,16 @@
 package Tests;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 
 public class LoginTest extends BaseTest {
 
 
-    public static Object loginToBuyMe_Test_01;
+    public LoginTest(WebDriver driver) {
+        super(driver);
+    }
 
     @Before
     public void setUp() {
@@ -16,7 +20,6 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void loginToBuyMe_Test_01() throws Exception {
-
         HomePage.clickLoginSignUpButton();
         LoginPage.emailField((readFromFile("email")));
         LoginPage.passwordField(readFromFile("password"));

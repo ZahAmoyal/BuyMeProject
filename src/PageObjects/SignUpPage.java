@@ -9,16 +9,16 @@ public class SignUpPage extends BasePage {
         super(driver);
     }
 
+    //By xButton = By.cssSelector("[id=\"times\"]");
+    //By signIn = By.cssSelector("[class=\"text-link theme\"]");
+    //By registerWithFacebook = By.cssSelector("[class=\"social-btn.facebook\"]");
+    //By registerWithGoogle = By.cssSelector("[class=\"social-btn.google\"]");
     By registerButton = By.cssSelector("li[class=\"notSigned\"]");
-    By xButton = By.cssSelector("[id=\"times\"]");
-    By signIn = By.cssSelector("[class=\"text-link theme\"]");
-    By registerWithFacebook = By.cssSelector("[class=\"social-btn.facebook\"]");
-    By registerWithGoogle = By.cssSelector("[class=\"social-btn.google\"]");
     By firstNameField = By.cssSelector("[placeholder=\"שם פרטי\"]");
     By emailField = By.cssSelector("[placeholder=\"מייל\"]");
     By passwordField = By.cssSelector("[placeholder=\"סיסמה\"]");
     By password_Authentication = By.cssSelector("[placeholder=\"אימות סיסמה\"]");
-    By checkBox_IAgree = By.cssSelector("div.login-options.grid.register-text");
+    static By checkBox_IAgree = By.cssSelector("div.login-options.grid.register-text");
     By submitButton = By.cssSelector("[gtm=\"הרשמה ל-BUYME\"]");
 
     public SignUpPage clickRegisterButton() {
@@ -26,22 +26,6 @@ public class SignUpPage extends BasePage {
         return this;
     }
 
-    public SignUpPage clickXButton() {
-        click(xButton);
-        return this;
-    }
-    public SignUpPage clickSignIn(){
-        click(signIn);
-        return this;
-    }
-    public SignUpPage clickRegisterWithFacebook(){
-        click(registerWithFacebook);
-        return this;
-    }
-    public SignUpPage clickRegisterWithGoogle(){
-        click(registerWithGoogle);
-        return this;
-    }
     public SignUpPage writeTextFirstNameField(String firstName){
         writeText(firstNameField,firstName);
         return this;
@@ -58,14 +42,29 @@ public class SignUpPage extends BasePage {
         writeText(password_Authentication, passwordAuthentication);
         return this;
     }
-    public SignUpPage clickCheckBox_IAgree(){
-        if (!selected(checkBox_IAgree))
-            click(checkBox_IAgree);
-        return this;
+    public static void clickCheckBox_IAgree(){
+        selected(checkBox_IAgree);
     }
     public SignUpPage clickSubmitButton(){
         click(submitButton);
         return this;
-
     }
 }
+/*
+ public SignUpPage clickSignIn(){
+        click(signIn);
+        return this;
+    }
+public SignUpPage clickXButton() {
+        click(xButton);
+        return this;
+    }
+        public SignUpPage clickRegisterWithFacebook(){
+        click(registerWithFacebook);
+        return this;
+    }
+    public SignUpPage clickRegisterWithGoogle(){
+        click(registerWithGoogle);
+        return this;
+    }
+ */

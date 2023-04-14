@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+<browzer>chrome</browzer>
+ <configq>
+  <firstName>Zah</firstName>
+</configq>
+ <configw>
+  <email>zahamoyal10@gmail.com</email>
+ </configw>
+ <password1>
+  <password>Aa123456</password>
+ </password1>
+ <password2>
+  <password>Aa123456</password>
+ </password2>
+</config>

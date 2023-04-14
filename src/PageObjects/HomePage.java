@@ -13,8 +13,6 @@ import static Tests.BaseTest.randomNum;
 import static org.openqa.selenium.By.tagName;
 
 public class HomePage extends BasePage {
-    static int num = (randomNum(6) + 1);
-    static By name = new By.ByCssSelector("[svg.inner-element]");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -30,21 +28,22 @@ public class HomePage extends BasePage {
     public void clickLoginSignUpButton() {
         click(login_SignUpButton);
     }
+
     public static void clickArea() {
         click(area);
     }
+
     public static void clickCategory() {
         click(category);
     }
+
     public static void clickSubmit() {
         click(submit);
     }
 
-
     public static void clickSum() {
         click(sum);
     }
-
 
 }
 
