@@ -1,5 +1,6 @@
 package Tests;
 
+import Flows.SenderReceeiverInformationFlow;
 import PageObjects.ChooseGiftPage;
 import com.relevantcodes.extentreports.LogStatus;
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static PageObjects.ChooseGiftPage.*;
+import static Tests.LoginTest.loginToBuyMe_Test_01;
 
 public class ChooseGiftTest extends BaseTest {
 
@@ -25,22 +27,19 @@ public class ChooseGiftTest extends BaseTest {
 
     @Test
     public void choose_A_Gift() throws Exception {
-        SenderReceiverInformationTest.chooseGift();
+        SenderReceeiverInformationFlow.SenderReceeiverInformationFlow();
         isSelected_someOneElse();
         nameOfReceivesA_giftField();
         clickEvent();
         writingField();
         click_uploadPicture();
-        Thread.sleep(7000);
+        Thread.sleep(3000);
         click_submit();
-        //ChooseGiftPage.nowRadioButton_select();
+        nowRadioButton_select();
         click_sms();
         phoneNumberField();
         nameField();
         phoneField();
         click_submitButton();
-        //click_moreDetails();
     }
-
-
 }

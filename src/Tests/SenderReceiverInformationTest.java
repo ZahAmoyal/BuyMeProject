@@ -1,5 +1,6 @@
 package Tests;
 
+import Flows.LoginFlow;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +22,8 @@ public class SenderReceiverInformationTest extends BaseTest {
 
     @Test
     public static void chooseGift() throws Exception {
-        HomeTest.checkCategory();
+        //HomeTest.checkCategory();
+        LoginFlow.loginFlow();
         choosing_A_gift();
         choosing_A_gift_from_a_list();
     }

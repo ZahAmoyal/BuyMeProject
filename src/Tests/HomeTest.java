@@ -27,16 +27,11 @@ static HomePage HomePage;
     }
     @Test
     public static void checkCategory() throws Exception {
-        //Thread.sleep(5000);
         //ifDis();
         ChooseAnAmount();
-        //Thread.sleep(500);
         SelectAnArea();
-        //Thread.sleep(500);
         categorySelection();
-        //Thread.sleep(500);
         clickSubmit();
-        //Thread.sleep(500);
     }
 
 }

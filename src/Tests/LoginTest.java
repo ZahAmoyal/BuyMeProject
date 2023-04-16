@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void loginToBuyMe_Test_01() throws Exception {
+    public static void loginToBuyMe_Test_01() throws Exception {
         HomePage.clickLoginSignUpButton();
         LoginPage.emailField((readFromFile("email")));
         LoginPage.passwordField(readFromFile("password"));
