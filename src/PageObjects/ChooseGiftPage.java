@@ -12,22 +12,28 @@ import static org.openqa.selenium.By.tagName;
 
 public class ChooseGiftPage extends BasePage {
     WebElement eventOpen;
+    static String absolutePathToMyFile = "C:\\Users\\AsusX514\\Pictures\\image.jpeg";
 
     static By someOneElse = By.cssSelector(".ember-view.button.button-forSomeone.selected");
     static By nameOfReceivesA_gift = By.cssSelector("input[title='שם מקבל המתנה']");
     static By event = By.cssSelector(".ember-view.bm-field.bm-select.with-icon.empty.md.with-label");
+    static WebElement uploadPicture = driver.findElement(By.cssSelector("input[type='file']"));
     //static By eventOpen = By.cssSelector(".ember-view.bm-field.bm-select.show-options.with-icon.empty.md.with-label");
 
     static By writingField = By.cssSelector("[data-parsley-group=\"voucher-greeting\"]");
-    static By uploadPicture = By.cssSelector(".media-circle-btn.ember-view.bm-media-upload");
+   // static By uploadPicture = By.cssSelector(".media-circle-btn.ember-view.bm-media-upload");
+
+
     static By submit = By.cssSelector("[type=\"submit\"]");
 
 
-    static By nowRadioButton = By.cssSelector(".ember-view.button.button-now.selected");
-    static By sms = By.cssSelector("svg[gtm=\"method-sms\"]");
+    static By nowRadioButton = By.cssSelector("div.ember-view.button.button-now.selected");
+    static By sms = By.cssSelector("svg[gtm='method-sms']");
     static By phoneNumber = By.id("sms");
-    static By name = By.cssSelector("[placeholder=\"שם שולח המתנה\"]");
-    static By submitButton = By.cssSelector("[type=\"submit\"]");
+    static By name = By.cssSelector("[placeholder='שם שולח המתנה']");
+    static By submitButton = By.cssSelector("[type='submit']");
+    static By phoneNumberOfTheSender = By.cssSelector("input[placeholder='מספר נייד']");
+
 
     static By moreDetails = By.cssSelector("bm-body-1.text-link.theme");
 
@@ -49,13 +55,14 @@ public class ChooseGiftPage extends BasePage {
         Thread.sleep(500);
         WebElement industries = driver.findElement(By.cssSelector(".ember-view.bm-field.bm-select.show-options.with-icon.empty.md.with-label"));
         List<WebElement> events = industries.findElements(By.cssSelector(".ember-view.bm-select-option"));
-        for (WebElement element : events) {
-            System.out.println(element.getText());
-        }
+        //for (WebElement element : events) {
+         //   System.out.println(element.getText());
+      //  }
         int num = (randomNum(events.size()));
-        String id = events.get(num).getAttribute("id");
+        String value = events.get(num).getAttribute("value");
         Thread.sleep(500);
-        industries.findElement(By.cssSelector("li[id="+id+"]")).click();
+        WebElement ele =industries.findElement(By.cssSelector("li[value='"+value+"']"));
+        ele.click();
 
     }
 
@@ -64,7 +71,8 @@ public class ChooseGiftPage extends BasePage {
     }
 
     public static void click_uploadPicture() {
-        click(uploadPicture);
+        uploadPicture.sendKeys(absolutePathToMyFile);
+        //click(uploadPicture);
     }
     //driver.findElement(By.id(browseButton)).sendKeys("<absolutePathToMyFile>");
 
@@ -72,33 +80,30 @@ public class ChooseGiftPage extends BasePage {
         click(submit);
     }
 
-    public ChooseGiftPage nowRadioButton_select() {
+    public static void nowRadioButton_select() {
         selected(nowRadioButton);
-        return this;
     }
 
-    public ChooseGiftPage click_sms() {
+    public static void click_sms() {
         click(sms);
-        return this;
     }
 
-    public ChooseGiftPage phoneNumberField() throws Exception {
-        writeText(phoneNumber, (readFromFile("0543103356")));
-        return this;
+    public static void phoneNumberField() throws Exception {
+        writeText(phoneNumber, "0543103356");
     }
 
-    public ChooseGiftPage nameField() throws Exception {
+    public static void nameField() throws Exception {
         writeText(name, (readFromFile("firstName")));
-        return this;
+    }
+    public static void phoneField(){
+        writeText(phoneNumberOfTheSender, (("0543103356")));
     }
 
-    public ChooseGiftPage click_submitButton() {
+    public static void click_submitButton() {
         click(submitButton);
-        return this;
     }
 
-    public ChooseGiftPage click_moreDetails() {
+    public static void  click_moreDetails() {
         click(moreDetails);
-        return this;
     }
 }

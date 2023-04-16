@@ -31,11 +31,15 @@ public class ChooseGiftTest extends BaseTest {
         clickEvent();
         writingField();
         click_uploadPicture();
+        Thread.sleep(7000);
         click_submit();
         //ChooseGiftPage.nowRadioButton_select();
-        ChooseGiftPage.click_sms();
-        ChooseGiftPage.phoneNumberField();
-        ChooseGiftPage.nameField();
+        click_sms();
+        phoneNumberField();
+        nameField();
+        phoneField();
+        click_submitButton();
+        //click_moreDetails();
     }
 
 

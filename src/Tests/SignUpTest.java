@@ -38,7 +38,6 @@ public class SignUpTest extends BaseTest {
         SignUpPage.clickSubmitButton();
         By myAccount = By.cssSelector("[class=\"nav-bar buttons nav-bar-box nav-bar-left\"]");
         Assert.assertTrue("Check if this appears", true);
-
     }
 
     @After

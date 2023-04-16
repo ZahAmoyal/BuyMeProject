@@ -178,10 +178,10 @@ public class BaseTest {
         //System.out.println(zah1.get(num).getText()+num);
         // WebElement choose = industries.findElement(By.partialLinkText((zah1.get(num).getText())));
         WebElement choose = industries.findElement(By.cssSelector("li.ember-view.bm-gift-card-link"));
-        //choose.click();
         //System.out.println(choose.getText());
         // boolean dis= choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).isDisplayed();//label.ember-view.bm-field.bm-input.empty.blur.with-icon.md.no-label"));
         //PageObjects.BasePage.waitVisibility((By) choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")));
+        Thread.sleep(3000);
         if (choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).isDisplayed()) {
             choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).sendKeys("500");
             WebElement submit = choose.findElement(By.tagName("button"));//zah1.get(num).findElement(By.cssSelector("div[class='bottom bm-subtitle-1'] button"));
