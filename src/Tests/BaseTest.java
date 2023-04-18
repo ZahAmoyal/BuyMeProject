@@ -23,9 +23,6 @@ import PageObjects.BasePage;
 import PageObjects.HomePage;
 import PageObjects.ChooseGiftPage;
 
-import static PageObjects.ChooseGiftPage.clickEvent;
-import static org.openqa.selenium.By.tagName;
-
 
 public class BaseTest {
     public static WebDriver driver;
@@ -52,10 +49,11 @@ public class BaseTest {
     @BeforeClass
     public static void setup() {
         extent = new ExtentReports(reportFilePath);
-        myTests = extent.startTest("ExtentFinalProject");
+        myTests = extent.startTest("Sanity test - Buy Me");
         System.setProperty("webdriver.chrome.driver", chromeD);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("disable-popup-blocking");
         driver = new ChromeDriver(options);
 
         BasePage = new BasePage(driver);
@@ -101,7 +99,7 @@ public class BaseTest {
         driver.quit();
         extent.flush();
     }
-
+    // פונקצייה שמקבלת מספר ומחזירה ערך רנדומלי מ0 עד למספר
     public static int randomNum(int num) {
         int int_random;
         do {
@@ -112,46 +110,7 @@ public class BaseTest {
         return int_random;
     }
 
-    //List
-    public static void ChooseAnAmount() throws InterruptedException {
-        HomePage.clickSum();
-        Thread.sleep(500);
-        WebElement industries = driver.findElement(By.cssSelector("label.ember-view.bm-field.bm-select.show-options.with-icon.empty.md.no-label"));
-        List<WebElement> sum = industries.findElements(tagName("li"));
-        int num = (randomNum(sum.size()));
-        WebElement choose = industries.findElement(By.cssSelector("[uaindex=\"" + (num) + "\"]"));
-        choose.click();
-    }
-
-    public static void SelectAnArea() throws InterruptedException {
-        HomePage.clickArea();
-        Thread.sleep(500);
-        WebElement industries = driver.findElement(By.cssSelector("label.ember-view.bm-field.bm-select.show-options.with-icon.empty.md.no-label"));
-        List<WebElement> area = industries.findElements(tagName("li"));
-        int num = (randomNum(area.size()));
-        WebElement choose = industries.findElement(By.cssSelector("[uaindex=\"" + (num) + "\"]"));
-        choose.click();
-    }
-
-
-    public static void categorySelection() throws InterruptedException {
-        HomePage.clickCategory();
-        Thread.sleep(500);
-        WebElement industries = driver.findElement(By.cssSelector("label.ember-view.bm-field.bm-select.show-options.search.with-icon.empty.md.no-label.with-search"));
-        List<WebElement> category = industries.findElements(tagName("li"));
-        int num = (randomNum(category.size()) + 1);
-        WebElement choose = industries.findElement(By.cssSelector("[uaindex=\"" + (num) + "\"]"));
-        choose.click();
-    }
-
-    public static void choosing_A_gift() throws InterruptedException {
-        Thread.sleep(750);
-        WebElement industries = driver.findElement(By.cssSelector("ul.grid.bm-product-cards"));
-        List<WebElement> zah = industries.findElements(By.cssSelector("div.ember-view.bm-product-card-link.mx-4.lr-6.sm-12"));
-        WebElement choose = industries.findElement(By.partialLinkText(zah.get(randomNum(zah.size())).getText()));
-        choose.click();
-    }
-
+// פונקצייה לסגירת פופאפ שהיה (כרגע לא פעיל)
     public static void ifDis() {
         By popUp = By.cssSelector("[style=\"fill: rgb(0, 0, 0);\"]");
         if (SignUpPage.displayed(popUp)) {
@@ -159,40 +118,7 @@ public class BaseTest {
         }
     }
 
-    public static void choosing_A_gift_from_a_list() throws InterruptedException {
-        Thread.sleep(3000);
-        //WebElement industries = driver.findElement(By.cssSelector("div.inner"));
-        WebElement industries = driver.findElement(By.cssSelector(".grid.gifts-list"));
-        List<WebElement> zah1 = industries.findElements(tagName("li"));
-        //List<WebElement> zah1 = industries.findElements(By.cssSelector(".grid.gifts-list"));
-        //List<WebElement> zah1 = industries.findElements(By.cssSelector("img.ember-view"));
-        //List<WebElement> zah1 = industries.findElements(By.cssSelector("li.ember-view.bm-gift-card-link"));
-        //List<WebElement> zah1 = industries.findElements(By.cssSelector("div.bottom.bm-subtitle-1"));
-        //System.out.println(zah.size());
 
-        // for (int i = 0; i < zah1.size(); i++) {
-        //System.out.println(zah1.get(i).getText());
-        //}
-        System.out.println(zah1.size());
-        int num = randomNum(zah1.size());
-        //System.out.println(zah1.get(num).getText()+num);
-        // WebElement choose = industries.findElement(By.partialLinkText((zah1.get(num).getText())));
-        WebElement choose = industries.findElement(By.cssSelector("li.ember-view.bm-gift-card-link"));
-        //System.out.println(choose.getText());
-        // boolean dis= choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).isDisplayed();//label.ember-view.bm-field.bm-input.empty.blur.with-icon.md.no-label"));
-        //PageObjects.BasePage.waitVisibility((By) choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")));
-        Thread.sleep(3000);
-        if (choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).isDisplayed()) {
-            choose.findElement(By.cssSelector("input[placeholder='הכנס סכום']")).sendKeys("500");
-            WebElement submit = choose.findElement(By.tagName("button"));//zah1.get(num).findElement(By.cssSelector("div[class='bottom bm-subtitle-1'] button"));
-            submit.click();
-        } else {
-            Thread.sleep(1000);
-            choose.click();
-            //WebElement submit = zah1.get(num).findElement(By.cssSelector("div[class='bottom bm-subtitle-1'] button"));
-            //submit.click();
-        }
-    }
     /*
     public static void select_event() throws InterruptedException {
         clickEvent();

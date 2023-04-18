@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <config>
 <browzer>chrome</browzer>
- <configq>
-  <firstName>Zah</firstName>
-</configq>
- <configw>
-  <email>zahamoyal10@gmail.com</email>
- </configw>
- <password1>
-  <password>Aa123456</password>
- </password1>
- <password2>
-  <password>Aa123456</password>
- </password2>
+ <firstName>Zah</firstName>
+ <email>zahamoyal10@gmail.com</email>
+ <password>Aa123456</password>
+ <passwordAuthentication>Aa123456</passwordAuthentication>
+ <phoneNumber>0543103356</phoneNumber>
 </config>

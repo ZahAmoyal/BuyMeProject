@@ -1,13 +1,22 @@
 package Flows;
-import static Tests.HomeTest.checkCategory;
-import static Tests.LoginTest.loginToBuyMe_Test_01;
+import PageObjects.BasePage;
+import PageObjects.HomePage;
+import PageObjects.LoginPage;
+import Tests.HomeTest;
+
+import Tests.*;
+import org.openqa.selenium.WebDriver;
 
 
-public class HomeFlow {
+public class HomeFlow extends BasePage {
 
-    public static void HomeFlow() throws Exception {
-        loginToBuyMe_Test_01();
-        checkCategory();
+    public HomeFlow(WebDriver driver) {
+        super(driver);
+    }
+
+    public static void flowHome() throws Exception {
+        //LoginPage.loginToBuyMe();
+        HomePage.searchGift();
     }
 
 }

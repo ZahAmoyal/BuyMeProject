@@ -1,23 +1,20 @@
 package Tests;
 
-import PageObjects.BasePage;
+import PageObjects.ExtraPage;
 import PageObjects.HomePage;
 import com.relevantcodes.extentreports.LogStatus;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
-import static PageObjects.HomePage.clickSubmit;
-
-
-//import static Tests.LoginTest.loginToBuyMe_Test_01;
+import static PageObjects.ExtraPage.printLoadingDots;
 
 public class HomeTest extends BaseTest{
 
 static HomePage HomePage;
+
     public HomeTest() {
         super(driver);
-
     }
 
     @Before
@@ -26,12 +23,21 @@ static HomePage HomePage;
         driver.manage().window().maximize();
     }
     @Test
-    public static void checkCategory() throws Exception {
+    public void chooseGift_02() throws Exception {
+        //LoginPage.loginBuyMe();
         //ifDis();
-        ChooseAnAmount();
-        SelectAnArea();
-        categorySelection();
-        clickSubmit();
+        myTests = extent.startTest(Thread.currentThread().getStackTrace()[1].getMethodName());
+        myTests.log(LogStatus.INFO, "Log from threadId: " + Thread.currentThread().getId());
+        HomePage.searchGift();
     }
 
+    @After
+    public void afterTest() {
+        extent.endTest(myTests);
+    }
 }
+//ChooseAnAmount();
+//SelectAnArea();
+//categorySelection();
+//HomePage.clickSubmit();
+

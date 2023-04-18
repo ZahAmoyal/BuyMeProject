@@ -1,6 +1,8 @@
 package Tests;
 
-import Flows.LoginFlow;
+import Flows.HomeFlow;
+import com.relevantcodes.extentreports.LogStatus;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,8 +10,6 @@ import org.junit.Test;
 
 
 public class SenderReceiverInformationTest extends BaseTest {
-    public Object loginToBuyMe_Test_01;
-
     public SenderReceiverInformationTest() {
         super(driver);
     }
@@ -21,11 +21,19 @@ public class SenderReceiverInformationTest extends BaseTest {
     }
 
     @Test
-    public static void chooseGift() throws Exception {
+    public void senderReceiver_04() throws Exception {
         //HomeTest.checkCategory();
-        LoginFlow.loginFlow();
-        choosing_A_gift();
-        choosing_A_gift_from_a_list();
+        //LoginFlow.loginFlow();
+        //choosing_A_gift();
+        //choosing_A_gift_from_a_list();
+        myTests = extent.startTest(Thread.currentThread().getStackTrace()[1].getMethodName());
+        myTests.log(LogStatus.INFO, "Log from threadId: " + Thread.currentThread().getId()); //HomeFlow.flowHome();
+        HomePage.searchGift();
+        ChooseGiftPage.chooseGift();
+    }
+    @After
+    public void afterTest() {
+        extent.endTest(myTests);
     }
 
 }

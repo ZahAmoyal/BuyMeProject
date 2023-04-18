@@ -47,17 +47,19 @@ public class BasePage {
     }
 
     //Get Text
-    public String getText(By elementLocation) {
+    public static String getText(By elementLocation) {
         waitVisibility(elementLocation);
         return driver.findElement(elementLocation).getText();
     }
 
     public static void waitVisibility(By by) {
-        try {
+       WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+
+       /* try {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
