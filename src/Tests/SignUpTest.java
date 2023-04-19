@@ -16,11 +16,11 @@ public class SignUpTest extends BaseTest {
         super(driver);
     }
 
-    @Before
+   /* @Before
     public void setUp() {
         driver.get("https://buyme.co.il/");
         driver.manage().window().maximize();
-    }
+    }*/
 
     @Test
     public void registerToBuyMe_Test_01() throws Exception {

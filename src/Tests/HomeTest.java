@@ -7,7 +7,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static PageObjects.ExtraPage.printLoadingDots;
 
 public class HomeTest extends BaseTest{
 
@@ -17,15 +16,11 @@ static HomePage HomePage;
         super(driver);
     }
 
-    @Before
-    public void setUp() {
-        driver.get("https://buyme.co.il/");
-        driver.manage().window().maximize();
-    }
     @Test
     public void chooseGift_02() throws Exception {
         //LoginPage.loginBuyMe();
-        //ifDis();
+        Thread.sleep(1000);
+        ifDis();
         myTests = extent.startTest(Thread.currentThread().getStackTrace()[1].getMethodName());
         myTests.log(LogStatus.INFO, "Log from threadId: " + Thread.currentThread().getId());
         HomePage.searchGift();

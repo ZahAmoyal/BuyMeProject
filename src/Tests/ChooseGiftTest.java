@@ -20,11 +20,11 @@ public class ChooseGiftTest extends BaseTest {
         super(driver);
     }
 
-    @Before
+    /*@Before
     public void setUp() {
         driver.get("https://buyme.co.il");
         driver.manage().window().maximize();
-    }
+    }*/
 
     @Test
     public void choose_A_Gift_03() throws Exception {

@@ -26,19 +26,19 @@ public class SenderReceiverInformationPage extends BasePage {
     }
 
 
-        static By someOneElse = By.cssSelector(".ember-view.button.button-forSomeone.selected");
+        static By someOneElseRadioButton = By.cssSelector(".ember-view.button.button-forSomeone.selected");
         static By nameOfReceivesA_gift = By.cssSelector("input[type=\"text\"]");
-        static By event = By.cssSelector(".ember-view.bm-field.bm-select.with-icon.empty.md.with-label");
+        static By events = By.cssSelector(".ember-view.bm-field.bm-select.with-icon.empty.md.with-label");
         static By uploadPicture = By.cssSelector("input[type='file']");
-        static By writingField = By.cssSelector("[data-parsley-group=\"voucher-greeting\"]");
-        static By submit = By.cssSelector("[type=\"submit\"]");
+        static By nameOfSender = By.cssSelector("[data-parsley-group=\"voucher-greeting\"]");
+        static By submitButton = By.cssSelector("[type=\"submit\"]");
 
 
         static By nowRadioButton = By.cssSelector("div.ember-view.button.button-now.selected");
         static By sms = By.cssSelector("svg[gtm='method-sms']");
         static By phoneNumber = By.id("sms");
         static By name = By.cssSelector("[placeholder='שם שולח המתנה']");
-        static By submitButton = By.cssSelector("[type='submit']");
+        static By continuePaymentButton = By.cssSelector("[type='submit']");
         static By phoneNumberOfTheSender = By.cssSelector("input[placeholder='מספר נייד']");
 
 
@@ -46,7 +46,7 @@ public class SenderReceiverInformationPage extends BasePage {
 
         // פונקצייה לבדיקה האם מישהו אחר מסומן
         public static void isSelected_someOneElse() {
-            selected(someOneElse);
+            selected(someOneElseRadioButton);
         }
         // הזנה של שם פרטי בשדה
         public static void nameOfReceivesA_giftField() throws Exception {
@@ -54,7 +54,7 @@ public class SenderReceiverInformationPage extends BasePage {
         }
         // רשימת אירועים - וכן בחירה של אירוע רנדומלי (עם שימוש בפונקציית הRand)
         public static void clickEvent() throws InterruptedException {
-            click(event);
+            click(events);
             Thread.sleep(500);
             WebElement industries = driver.findElement(By.cssSelector(".ember-view.bm-field.bm-select.show-options.with-icon.empty.md.with-label"));
             List<WebElement> events = industries.findElements(By.cssSelector(".ember-view.bm-select-option"));
@@ -69,8 +69,8 @@ public class SenderReceiverInformationPage extends BasePage {
 
         }
         // הזנת שם פרטי של מקבל המתנה שינוי
-        public static void writingField() throws Exception {
-            writeText(writingField, (readFromFile("firstName")));
+        public static void writingNameOfSenderField() throws Exception {
+            writeText(nameOfSender, (readFromFile("firstName")));
         }
         // העלאת תמונה
         public static void click_uploadPicture() {
@@ -78,7 +78,7 @@ public class SenderReceiverInformationPage extends BasePage {
         }
 
         public static void click_submit() {
-            click(submit);
+            click(continuePaymentButton);
         }
 
         public static void nowRadioButton_select() {
@@ -105,15 +105,12 @@ public class SenderReceiverInformationPage extends BasePage {
             click(submitButton);
         }
 
-        public static void click_moreDetails() {
-            click(moreDetails);
-        }
 
         public static void senderGift() throws Exception {
             //isSelected_someOneElse();
             nameOfReceivesA_giftField();
             clickEvent();
-            writingField();
+            writingNameOfSenderField();
             click_uploadPicture();
             Thread.sleep(3000);
             click_submit();

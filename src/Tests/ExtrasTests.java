@@ -1,25 +1,39 @@
 package Tests;
 
+import Flows.SenderReceeiverInformationFlow;
 import PageObjects.ExtraPage;
 import PageObjects.LoginPage;
+import com.mongodb.assertions.Assertions;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
 public class ExtrasTests extends BaseTest {
 
-    //By excepted = By.ByCssSelector("")
-    public ExtrasTests(WebDriver driver) {
+    public ExtrasTests() {
         super(driver);
     }
 
-    public static void extraTest_07(){
-        LoginPage.click_RegisterButton();
-        LoginPage.loginToBuyMe();
-        ExtraPage.printLoadingDots();
+    /*@Before
+    public void setUp() {
+        driver.get("https://buyme.co.il");
+        driver.manage().window().maximize();
+    }*/
+
+    @Test
+    public void extraTest_07() throws Exception {
+        SenderReceeiverInformationFlow.senderReceeiverInformationFlow();
+        ExtraPage.clickOnThePreviewButton();
+        ExtraPage.clickOnTheBackButton();
 
 
     }
 
-
+    @After
+    public void afterTest() {
+        extent.endTest(myTests);
+    }
 }

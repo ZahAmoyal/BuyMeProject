@@ -1,14 +1,13 @@
 package Flows;
 
-import PageObjects.ChooseGiftPage;
-import PageObjects.HomePage;
-import PageObjects.LoginPage;
-import PageObjects.SenderReceiverInformationPage;
+import PageObjects.*;
 import Tests.*;
 
 public class SenderReceeiverInformationFlow {
 
-    public static void SenderReceeiverInformationFlow() throws Exception {
+    public static void senderReceeiverInformationFlow() throws Exception {
         ChooseGiftFlow.chooseGiftFlow();
+        SenderReceiverInformationPage.senderGift();
+
     }
 }

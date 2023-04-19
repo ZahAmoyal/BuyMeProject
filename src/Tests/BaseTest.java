@@ -2,10 +2,12 @@ package Tests;
 
 
 import PageObjects.*;
+import com.mongodb.assertions.Assertions;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import PageObjects.BasePage;
 import PageObjects.HomePage;
@@ -55,17 +58,18 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("disable-popup-blocking");
         driver = new ChromeDriver(options);
-
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         BasePage = new BasePage(driver);
         SignUpPage = new SignUpPage(driver);
         LoginPage = new LoginPage(driver);
         HomePage = new HomePage(driver);
         SenderReceiverInformationPage = new SenderReceiverInformationPage(driver);
 //        ChooseGiftPage = new ChooseGiftPage(driver);
-
+        driver.manage().window().maximize();
+        driver.get("https://buyme.co.il/");
     }
 
-
+    // This is a method that takes screenshots whenever an element is not found, and it is added to our extent report.
     // Take screenshot
     static String takeScreenShot(String ImagePath) {
         TakesScreenshot takesScreenShot = (TakesScreenshot) driver;
@@ -78,7 +82,6 @@ public class BaseTest {
         }
         return ImagePath + ".png";
     }
-
 
     //Read from file
     public static String readFromFile(String KeyData) throws Exception {
@@ -99,6 +102,7 @@ public class BaseTest {
         driver.quit();
         extent.flush();
     }
+
     // פונקצייה שמקבלת מספר ומחזירה ערך רנדומלי מ0 עד למספר
     public static int randomNum(int num) {
         int int_random;
@@ -110,13 +114,28 @@ public class BaseTest {
         return int_random;
     }
 
-// פונקצייה לסגירת פופאפ שהיה (כרגע לא פעיל)
+    // פונקצייה לסגירת פופאפ שהיה (כרגע לא פעיל)
     public static void ifDis() {
-        By popUp = By.cssSelector("[style=\"fill: rgb(0, 0, 0);\"]");
+        By popUp = By.cssSelector("div.adoric_element.element-shape.closeLightboxButton");
         if (SignUpPage.displayed(popUp)) {
             BasePage.click(popUp);
         }
     }
+
+    public static void assertURL() {
+        String siteURL = "https://buyme.co.il";
+        String actualURL = driver.getCurrentUrl();
+        Assert.assertFalse(checkUrl(actualURL, siteURL));
+        System.out.println("Current URL is: " + actualURL);
+    }
+
+    public static boolean checkUrl(String expectedUrl, String actualUrl) {
+        if (expectedUrl.equals(actualUrl))
+            return true;
+        return false;
+    }
+}
+
 
 
     /*
@@ -132,7 +151,7 @@ public class BaseTest {
     }
 
      */
-}
+
 
 
 //randomNum(option.size());

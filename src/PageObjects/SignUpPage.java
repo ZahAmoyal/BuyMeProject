@@ -49,7 +49,7 @@ public class SignUpPage extends BasePage {
          SignUpPage.writeTextFirstNameField(readFromFile("firstName"));
          SignUpPage.writeTextEmailField(readFromFile("email"));
          SignUpPage.writeTextPasswordField(readFromFile("password"));
-         SignUpPage.writeTextPassword_Authentication(readFromFile("PasswordAuthentication"));
+         SignUpPage.writeTextPassword_Authentication(readFromFile("password"));
          SignUpPage.clickCheckBox_IAgree();
          SignUpPage.clickSubmitButton();
      }

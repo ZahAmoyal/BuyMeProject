@@ -14,11 +14,11 @@ public class SenderReceiverInformationTest extends BaseTest {
         super(driver);
     }
 
-    @Before
+   /* @Before
     public void setUp() {
         driver.get("https://buyme.co.il");
         driver.manage().window().maximize();
-    }
+    }*/
 
     @Test
     public void senderReceiver_04() throws Exception {
@@ -29,7 +29,7 @@ public class SenderReceiverInformationTest extends BaseTest {
         myTests = extent.startTest(Thread.currentThread().getStackTrace()[1].getMethodName());
         myTests.log(LogStatus.INFO, "Log from threadId: " + Thread.currentThread().getId()); //HomeFlow.flowHome();
         HomePage.searchGift();
-        ChooseGiftPage.chooseGift();
+        ChooseGiftPage.pick_a_Buisness();
     }
     @After
     public void afterTest() {
