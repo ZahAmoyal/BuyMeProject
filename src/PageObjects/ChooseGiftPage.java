@@ -1,31 +1,24 @@
 package PageObjects;
 
-import Tests.BaseTest;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
-
 import static Tests.BaseTest.randomNum;
-import static Tests.BaseTest.readFromFile;
-import static org.openqa.selenium.By.partialLinkText;
 import static org.openqa.selenium.By.tagName;
 
 public class ChooseGiftPage extends BasePage {
 
+    static String noResult = "לא נמצאו תוצאות";
 
     public ChooseGiftPage(WebDriver driver) {
         super(driver);
     }
 
-    static String noResult = "לא נמצאו תוצאות";
+    By title = By.cssSelector(".title-xxl.bottom-md.top-none");
 
-    static By title = By.cssSelector(".title-xxl.bottom-md.top-none");
-
-    public static boolean checkTitle() {
+    public boolean checkTitle() {
         String result = getText(title);
         if (result.contains(noResult))
             return true;
@@ -33,7 +26,7 @@ public class ChooseGiftPage extends BasePage {
     }
 
     // פונקצייה לקבלת רשימה ובחירת ערך רנדומלי (נעזר בפנקציית rand)
-    public static void choosing_A_gift_from_a_list() throws InterruptedException {
+    public void choosing_A_gift_from_a_list() throws InterruptedException {
         Thread.sleep(1500);
         WebElement industries = driver.findElement(By.cssSelector(".grid.gifts-list"));
         List<WebElement> zah1 = industries.findElements(tagName("li"));
@@ -49,14 +42,8 @@ public class ChooseGiftPage extends BasePage {
         }
     }
 
-    public static void pick_a_Buisness() throws Exception {
-        //LoginFlow.loginFlow();
-        choosing_A_gift();
-        choosing_A_gift_from_a_list();
-    }
-
     // פונקצייה לקבלת רשימה ובחירת ערך רנדומלי (נעזר בפנקציית rand)
-    public static void choosing_A_gift() throws InterruptedException {
+    public void choosing_A_gift() throws InterruptedException {
         Thread.sleep(3000);
         WebElement industries = driver.findElement(By.cssSelector("ul.grid.bm-product-cards"));
         List<WebElement> shops = industries.findElements(By.cssSelector("div.ember-view.bm-product-card-link.mx-4.lr-6.sm-12"));

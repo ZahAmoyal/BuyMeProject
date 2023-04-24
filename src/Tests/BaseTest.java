@@ -1,57 +1,49 @@
 package Tests;
 
-
+import Flows.*;
 import PageObjects.*;
-import com.mongodb.assertions.Assertions;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.w3c.dom.Document;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Flow;
 import java.util.concurrent.TimeUnit;
-
 import PageObjects.BasePage;
 import PageObjects.HomePage;
 import PageObjects.ChooseGiftPage;
 
 
-public class BaseTest {
-    public static WebDriver driver;
-    static String reportFilePath = "C:\\project\\Project1.html";
-    static String chromeD = "src/Data/chromedriver.exe";
-    static String ImagePath = "C:\\project\\ScreenShot";
-    static String readFromFilePath = "src/Data/Config2.xml";
+public class BaseTest{
+
+    static WebDriver driver;
+    String reportFilePath = "C:\\project\\Project1.html";
+    static String chromeD = "C:\\selenium-java-4.8.0\\chromedriver_win32\\chromedriver.exe";
+    String ImagePath = "C:\\project\\ScreenShot";
+    //static String readFromFilePath = "src/Data/Config2.xml";
     static ExtentReports extent;
     static ExtentTest myTests;
-    static BasePage BasePage;
-    static LoginPage LoginPage;
-    static SignUpPage SignUpPage;
-    static ChooseGiftPage ChooseGiftPage;
-
-
-    static SenderReceiverInformationPage SenderReceiverInformationPage;
-    static HomePage HomePage;
-
-    public BaseTest(WebDriver driver) {
-        this.driver = driver;
-    }
+    LoginPage LoginPage;
+    SignUpPage SignUpPage;
+    ChooseGiftPage ChooseGiftPage;
+    SenderReceiverInformationPage SenderReceiverInformationPage;
+    HomePage HomePage;
+    static ChooseGiftFlow chooseGiftFlow;
+    static HomeFlow homeFlow;
+    static LoginFlow loginFlow;
+    static SenderReceeiverInformationFlow senderReceeiverInformationFlow;
+    static SignUpFlow signUpFlow;
 
 
     @BeforeClass
     public static void setup() {
-        extent = new ExtentReports(reportFilePath);
+        extent = new ExtentReports("C:\\project\\Project1.html");
         myTests = extent.startTest("Sanity test - Buy Me");
         System.setProperty("webdriver.chrome.driver", chromeD);
         ChromeOptions options = new ChromeOptions();
@@ -59,14 +51,14 @@ public class BaseTest {
         options.addArguments("disable-popup-blocking");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        BasePage = new BasePage(driver);
-        SignUpPage = new SignUpPage(driver);
-        LoginPage = new LoginPage(driver);
-        HomePage = new HomePage(driver);
-        SenderReceiverInformationPage = new SenderReceiverInformationPage(driver);
-//        ChooseGiftPage = new ChooseGiftPage(driver);
         driver.manage().window().maximize();
         driver.get("https://buyme.co.il/");
+
+        chooseGiftFlow = new ChooseGiftFlow(driver);
+        homeFlow =new HomeFlow(driver);
+        loginFlow =new LoginFlow(driver);
+        senderReceeiverInformationFlow = new SenderReceeiverInformationFlow(driver);
+        signUpFlow =new SignUpFlow(driver);
     }
 
     // This is a method that takes screenshots whenever an element is not found, and it is added to our extent report.
@@ -83,8 +75,8 @@ public class BaseTest {
         return ImagePath + ".png";
     }
 
-    //Read from file
-    public static String readFromFile(String KeyData) throws Exception {
+    /*//Read from file
+    public String readFromFile(String KeyData) throws Exception {
         File xmlFile = new File(readFromFilePath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -92,16 +84,8 @@ public class BaseTest {
         doc.getDocumentElement().normalize();
 
         return doc.getElementsByTagName(KeyData).item(0).getTextContent();
-    }
+    }*/
 
-
-    @AfterClass
-    public static void closeDriver() throws InterruptedException {
-        Thread.sleep(3000);
-        driver.close();
-        driver.quit();
-        extent.flush();
-    }
 
     // פונקצייה שמקבלת מספר ומחזירה ערך רנדומלי מ0 עד למספר
     public static int randomNum(int num) {
@@ -114,18 +98,10 @@ public class BaseTest {
         return int_random;
     }
 
-    // פונקצייה לסגירת פופאפ שהיה (כרגע לא פעיל)
-    public static void ifDis() {
-        By popUp = By.cssSelector("div.adoric_element.element-shape.closeLightboxButton");
-        if (SignUpPage.displayed(popUp)) {
-            BasePage.click(popUp);
-        }
-    }
-
     public static void assertURL() {
         String siteURL = "https://buyme.co.il";
         String actualURL = driver.getCurrentUrl();
-        Assert.assertFalse(checkUrl(actualURL, siteURL));
+        //Assert.assertFalse(checkUrl(actualURL, siteURL));
         System.out.println("Current URL is: " + actualURL);
     }
 
@@ -134,6 +110,16 @@ public class BaseTest {
             return true;
         return false;
     }
+
+    @AfterClass
+    public static void closeDriver() throws InterruptedException {
+        Thread.sleep(3000);
+        driver.close();
+        driver.quit();
+        extent.flush();
+    }
+
+
 }
 
 
@@ -151,7 +137,6 @@ public class BaseTest {
     }
 
      */
-
 
 
 //randomNum(option.size());

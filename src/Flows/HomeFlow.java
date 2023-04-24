@@ -1,24 +1,25 @@
 package Flows;
-import PageObjects.BasePage;
-import PageObjects.HomePage;
-import PageObjects.LoginPage;
-import PageObjects.SignUpPage;
-import Tests.HomeTest;
 
-import Tests.*;
+import PageObjects.HomePage;
 import org.openqa.selenium.WebDriver;
 
+public class HomeFlow {
 
-public class HomeFlow extends BasePage {
+    HomePage homePage;
 
     public HomeFlow(WebDriver driver) {
-        super(driver);
+        homePage = new HomePage(driver);
     }
 
-    public static void flowHome() throws Exception {
-        //LoginPage.loginToBuyMe();
-        SignUpPage.signUp();
-        HomePage.searchGift();
+    public void moveToLogin(){
+        homePage.ifDis();
+        homePage.clickLoginSignUpButton();
     }
 
+    public void searchGift() throws InterruptedException {
+        homePage.chooseAnAmount();
+        homePage.SelectAnArea();
+        homePage.categorySelection();
+        homePage.clickSubmit();
+    }
 }

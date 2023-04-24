@@ -2,9 +2,11 @@
 <config>
 <browzer>chrome</browzer>
  <firstName>Zah</firstName>
- <email>zjiawdqwwddddazoxdewi@eqqw.com</email>
+ <email>fggfdgd0ss56jfds@eqqw.com</email>
  <password>Aa123456</password>
  <passwordAuthentication>Aa123456</passwordAuthentication>
  <phoneNumber>0543103356</phoneNumber>
+ <pathReadFromFile>src/Data/Config2.xml</pathReadFromFile>
+ <reportFilePath>C:\project\Project1.html</reportFilePath>
  <extramessage>כל המתנות מחכות לך! אבל קודם צריך מייל וסיסמה</extramessage>
 </config>
