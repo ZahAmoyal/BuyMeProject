@@ -20,6 +20,7 @@ public class SignUpFlow {
         signUpPage.writeTextPassword_Authentication();
         signUpPage.clickCheckBox_IAgree();
         signUpPage.clickSubmitButton();
+        signUpPage.check();
     }
 
 }

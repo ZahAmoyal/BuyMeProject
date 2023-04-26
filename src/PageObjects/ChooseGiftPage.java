@@ -5,52 +5,47 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
-import static Tests.BaseTest.randomNum;
 import static org.openqa.selenium.By.tagName;
 
 public class ChooseGiftPage extends BasePage {
 
-    static String noResult = "לא נמצאו תוצאות";
+    By title = By.cssSelector("h1.bm-h1");
 
+    //constructor
     public ChooseGiftPage(WebDriver driver) {
         super(driver);
     }
 
-    By title = By.cssSelector(".title-xxl.bottom-md.top-none");
 
-    public boolean checkTitle() {
-        String result = getText(title);
-        if (result.contains(noResult))
-            return true;
-        return false;
+    // פונקצייה לקבלת רשימה ובחירת ערך רנדומלי (נעזר בפנקציית rand)
+    public void pickFromBusinessList() throws InterruptedException {
+        //Thread.sleep(3000);
+        WebElement businesses = driver.findElement(By.cssSelector("ul.grid.bm-product-cards"));
+        List<WebElement> businessList = businesses.findElements(By.cssSelector("div.ember-view.bm-product-card-link.mx-4.lr-6.sm-12"));
+        String numValue = businessList.get(randomNum(0,businessList.size())).getAttribute("id");
+        //Thread.sleep(1000);
+        WebElement choose = businesses.findElement(By.cssSelector("[id=" + numValue + "]"));
+        choose.click();
     }
 
     // פונקצייה לקבלת רשימה ובחירת ערך רנדומלי (נעזר בפנקציית rand)
-    public void choosing_A_gift_from_a_list() throws InterruptedException {
+    public void pickSubOption() throws InterruptedException {
         Thread.sleep(1500);
-        WebElement industries = driver.findElement(By.cssSelector(".grid.gifts-list"));
-        List<WebElement> zah1 = industries.findElements(tagName("li"));
-        String numValue = zah1.get(randomNum(zah1.size())).getAttribute("id");
-        WebElement choose = driver.findElement(By.cssSelector("[id=" + numValue + "]"));
+        WebElement business = driver.findElement(By.cssSelector(".grid.gifts-list"));
+        List<WebElement> subBusiness = business.findElements(tagName("li"));
+        String subNumValue = subBusiness.get(randomNum(0,subBusiness.size())).getAttribute("id");
+        WebElement choose = driver.findElement(By.cssSelector("[id=" + subNumValue + "]"));
         if (choose.getText().contains("נוספים")) {
             choose.click();
         } else {
             WebElement chosen = driver.findElement(By.cssSelector("input[placeholder='הכנס סכום']"));
             chosen.sendKeys("500");
             chosen.sendKeys(Keys.ENTER);
-
         }
     }
 
-    // פונקצייה לקבלת רשימה ובחירת ערך רנדומלי (נעזר בפנקציית rand)
-    public void choosing_A_gift() throws InterruptedException {
-        Thread.sleep(3000);
-        WebElement industries = driver.findElement(By.cssSelector("ul.grid.bm-product-cards"));
-        List<WebElement> shops = industries.findElements(By.cssSelector("div.ember-view.bm-product-card-link.mx-4.lr-6.sm-12"));
-        String numValue = shops.get(randomNum(shops.size())).getAttribute("id");
-        Thread.sleep(1000);
-        WebElement choose = industries.findElement(By.cssSelector("[id=" + numValue + "]"));
-        choose.click();
+    public void checkPage() throws Exception {
+        checkElementStatus(title,readFromFile("title"));
     }
 }
 

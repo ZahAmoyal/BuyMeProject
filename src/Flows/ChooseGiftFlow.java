@@ -11,8 +11,10 @@ public class ChooseGiftFlow {
         chooseGiftPage = new ChooseGiftPage(driver);
     }
 
-    public void pick_a_Buisness() throws InterruptedException {
-        chooseGiftPage.choosing_A_gift();
-        chooseGiftPage.choosing_A_gift_from_a_list();
+    public void pickBusinessFromList() throws Exception {
+        chooseGiftPage.assertURL();
+        chooseGiftPage.pickFromBusinessList();
+        chooseGiftPage.pickSubOption();
+        chooseGiftPage.checkPage();
     }
 }

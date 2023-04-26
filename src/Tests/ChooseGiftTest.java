@@ -10,13 +10,14 @@ public class ChooseGiftTest extends BaseTest {
 
     @Test
     public void choose_A_Gift_03() throws Exception {
+
         homeFlow.moveToLogin();
         signUpFlow.signUpBuyMeFlow();
         homeFlow.searchGift();
-        chooseGiftFlow.pick_a_Buisness();
+        chooseGiftFlow.pickBusinessFromList();
     }
     @After
     public void afterTest() {
-        extent.endTest(myTests);
+        extent.flush();
     }
 }

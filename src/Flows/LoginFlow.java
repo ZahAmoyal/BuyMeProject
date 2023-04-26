@@ -18,5 +18,10 @@ public class LoginFlow {
         loginPage.loginToBuyMe();
         Thread.sleep(30000);
     }
+
+    public void extraErrorFields(){
+        loginPage.loginToBuyMe();
+
+    }
 }
 

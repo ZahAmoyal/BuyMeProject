@@ -1,6 +1,7 @@
 package Flows;
 
 import PageObjects.HomePage;
+import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class HomeFlow {
@@ -16,10 +17,18 @@ public class HomeFlow {
         homePage.clickLoginSignUpButton();
     }
 
-    public void searchGift() throws InterruptedException {
-        homePage.chooseAnAmount();
-        homePage.SelectAnArea();
-        homePage.categorySelection();
-        homePage.clickSubmit();
+    public void searchGift() throws Exception {
+        do {
+            homePage.chooseAnAmount();
+            homePage.selectAnArea();
+            homePage.categorySelection();
+            homePage.clickSubmit();
+        }while ((homePage.checkTitle())==true);
+        //homePage.checkPage();
     }
+    public void logOut(){
+        homePage.clickMyAccount();
+        homePage.clickLogOut();
+    }
+
 }

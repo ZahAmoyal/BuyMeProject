@@ -5,18 +5,20 @@ import org.openqa.selenium.WebDriver;
 
 public class SignUpPage extends BasePage {
 
+    //Constructor
     public SignUpPage(WebDriver driver) {
         super(driver);
     }
 
+    //
     By signUp = By.cssSelector("[class=\"text-link theme\"]");
-    //By registerButton = By.cssSelector("li[class='notSigned']");
-    By firstNameField = By.cssSelector("[placeholder=\"שם פרטי\"]");
-    By emailField = By.cssSelector("[placeholder=\"מייל\"]");
-    By passwordField = By.cssSelector("[placeholder=\"סיסמה\"]");
-    By password_Authentication = By.cssSelector("[placeholder=\"אימות סיסמה\"]");
+    private By firstNameField = By.cssSelector("[placeholder=\"שם פרטי\"]");
+    private By emailField = By.cssSelector("[placeholder=\"מייל\"]");
+    private By passwordField = By.cssSelector("[placeholder=\"סיסמה\"]");
+    private By password_Authentication = By.cssSelector("[placeholder=\"אימות סיסמה\"]");
     By checkBox_IAgree = By.cssSelector("div.login-options.grid.register-text");
     By submitButton = By.cssSelector("[gtm=\"הרשמה ל-BUYME\"]");
+    By logOutButton = By.cssSelector("a[class=\"dropdown-item\"]");
 
     public void clickSignUp() {
         click(signUp);
@@ -44,6 +46,10 @@ public class SignUpPage extends BasePage {
 
     public void clickSubmitButton(){
         click(submitButton);
+    }
+
+    public void check() throws Exception {
+        checkElementStatus(logOutButton,readFromFile("myAccount"));
     }
 
 }

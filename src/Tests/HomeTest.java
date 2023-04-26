@@ -5,13 +5,14 @@ import org.junit.Test;
 
 public class HomeTest extends BaseTest{
     @Test
-    public void searchGiftHome() throws Exception {
+    public void searchGiftHome_02() throws Exception {
+
         homeFlow.moveToLogin();
         signUpFlow.signUpBuyMeFlow();
         homeFlow.searchGift();
     }
     @After
     public void afterTest() {
-        extent.endTest(myTests);
+        extent.flush();
     }
 }
