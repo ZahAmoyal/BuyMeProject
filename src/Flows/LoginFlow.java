@@ -16,12 +16,13 @@ public class LoginFlow {
         loginPage.emailField();
         loginPage.passwordField();
         loginPage.loginToBuyMe();
-        Thread.sleep(30000);
+        //Thread.sleep(100000);
     }
 
-    public void extraErrorFields(){
+    public void extraErrorFields() throws Exception {
         loginPage.loginToBuyMe();
-
+        loginPage.assertErrorMessage();
+        loginPage.closePopUp();
     }
 }
 

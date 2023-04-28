@@ -24,7 +24,7 @@ public class SenderReceeiverInformationFlow {
         senderReceiverInformationPage.click_sms();
         senderReceiverInformationPage.phoneNumberField();
         //senderReceiverInformationPage.nameField();
-        senderReceiverInformationPage.phoneField();
+        senderReceiverInformationPage.writePhoneFieldSender();
         senderReceiverInformationPage.click_submitButton();
         senderReceiverInformationPage.checkPage();
     }

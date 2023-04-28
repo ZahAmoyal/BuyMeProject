@@ -17,6 +17,7 @@ public class HomeFlow {
         homePage.clickLoginSignUpButton();
     }
 
+
     public void searchGift() throws Exception {
         do {
             homePage.chooseAnAmount();
@@ -24,11 +25,7 @@ public class HomeFlow {
             homePage.categorySelection();
             homePage.clickSubmit();
         }while ((homePage.checkTitle())==true);
-        //homePage.checkPage();
     }
-    public void logOut(){
-        homePage.clickMyAccount();
-        homePage.clickLogOut();
-    }
+
 
 }

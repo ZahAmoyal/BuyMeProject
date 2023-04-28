@@ -2,10 +2,13 @@
 <config>
 <browzer>chrome</browzer>
  <firstName>עמיחי</firstName>
- <email>nnjonnnksss@eqddfgsqw.com</email>
+ <email>mjmj@eqkkddjjfgsqw.com</email>
  <password>Aa123456</password>
  <passwordAuthentication>Aa123456</passwordAuthentication>
+ <Blessing>זו מתנה מכל הלב</Blessing>
  <phoneNumber>0543103356</phoneNumber>
+ <phoneNumberSender>0556656764</phoneNumberSender>
+ <phoneNumberReceiver>0585006065</phoneNumberReceiver>
  <pathReadFromFile>src/Data/Config2.xml</pathReadFromFile>
  <reportFilePath>C:\project\Project1.html</reportFilePath>
  <myAccount>יציאה</myAccount>
@@ -16,4 +19,6 @@
  <title>רכישת מתנה</title>
  <payment>בחירת אמצעי תשלום</payment>
  <colorOfText>#ffa126</colorOfText>
+ <Sender>עמיחי</Sender>
+ <Receiver>צח</Receiver>
 </config>

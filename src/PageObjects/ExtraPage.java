@@ -2,6 +2,8 @@ package PageObjects;
 
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 
 
@@ -12,13 +14,36 @@ public class ExtraPage extends BasePage {
         super(driver);
     }
 
-    private By preview = By.cssSelector("button[gtm=\"תצוגה של המתנה\"]");
-    private By footer = By.cssSelector("div.buttons");
-    private By closePopUp = By.cssSelector("div[aria-label='לסגור חלון פופ אפ']");
-    private By backButton = By.cssSelector("svg[id='chevron-right']");
-    private By homePageButton = By.cssSelector("img[alt=\"לוגו BUY-ME\"]");
-    private By errorText = By.cssSelector("ul[id=\"parsley-id-37\"]");
-    private By howSendText = By.cssSelector("div.step.active div.label.bottom-xs");
+    By preview = By.cssSelector("button[gtm=\"תצוגה של המתנה\"]");
+    By senderAndReceiverName =By.cssSelector(".recipient-sender.bottom-md");
+    By blessing = By.cssSelector(".greeting.bottom-md");
+    By footer = By.cssSelector("div.buttons");
+    By closePopUp = By.cssSelector("div[aria-label='לסגור חלון פופ אפ']");
+    By backButton = By.cssSelector("svg[id='chevron-right']");
+    By homePageButton = By.cssSelector("img[alt=\"לוגו BUY-ME\"]");
+    By howSendText = By.cssSelector("div.step.active div.label.bottom-xs");
+    By myAccountDropDown = By.cssSelector(".ember-view.dropdown.solid");
+    By logOutButton = By.cssSelector("a[class=\"dropdown-item\"]");
+
+
+    public void clickMyAccount() {
+        click(myAccountDropDown);
+    }
+    public void clickLogOut(){
+        click(logOutButton);
+    }
+
+//םונקצייה הסוגרת את הפופאפ של login
+    public void clickClosePopUp(){
+        click(closePopUp);
+    }
+
+
+//
+    public void logOut(){
+        clickMyAccount();
+        clickLogOut();
+    }
 
 
     public void clickOnTheBackButton() throws InterruptedException {
@@ -31,33 +56,30 @@ public class ExtraPage extends BasePage {
         click(backButton);
         goHomePage();
     }
-
+//פונקציה הלוחצת על הImage של Buyme ומועברת לדף הראשי
     public void goHomePage() {
         click(homePageButton);
     }
 
-
-    public void clickOnThePreviewButton() throws InterruptedException {
+// פונקצייה הלוחצת על כפתור לצפייה במתנה ולאחר מכן מבצעת ASSERT בעזרת הפונקצייה שלמטה, וכן סוגרת את הפופאפ
+    public void clickOnThePreviewButton() throws Exception {
         click(preview);
         Thread.sleep(2000);
-        click(closePopUp);
+        assertionForBlessing();
+        clickClosePopUp();
     }
 
-    public void scrollDownAndTakePicture_Extra_ChooseGiftScreen() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", footer);
-    }
-
-    public void getTextError() {
-        getText(errorText);
-    }
-
-
+    // פונקצייה המבצעת תהליך לחיצה על כפתור חזור ולאחר מכן לוקחת את צבע של אלמנט ומבצעת Assert לצבע שלו עם טקסט מהxml
     public void getTextToSend() throws Exception {
         click(backButton);
         String colorString = driver.findElement(howSendText).getCssValue("color");
         String colorValue = Color.fromString(colorString).asHex();
-        System.out.println(colorValue);
         Assert.assertEquals(readFromFile("colorOfText"),colorValue);
     }
-
+    // פונקצייה לבדיקת ההזמנה - מבוצעת על ידי ASSERT ובודקת את שם השולח , שם המקבל והברכה
+    public void assertionForBlessing() throws Exception {
+        Assert.assertTrue(getText(senderAndReceiverName).contains(readFromFile("Sender")));
+        Assert.assertTrue(getText(senderAndReceiverName).contains(readFromFile("Receiver")));
+        Assert.assertTrue(getText(blessing).equals(readFromFile("Blessing")));
+    }
 }

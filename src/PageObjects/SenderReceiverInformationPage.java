@@ -8,11 +8,10 @@ import java.util.List;
 
 
 public class SenderReceiverInformationPage extends BasePage {
-    //static String noResult = "לא נמצאו תוצאות";
 
-    String absolutePathToMyFile = "src/Data/image.jpeg";
-    File path = new File(new File(absolutePathToMyFile).getAbsolutePath());
-    String pathPicture = String.valueOf(path);
+    private String absolutePathToMyFile = "src/Data/image.jpeg";
+    private File path = new File(new File(absolutePathToMyFile).getAbsolutePath());
+    private String pathPicture = String.valueOf(path);
 
     //constructor
     public SenderReceiverInformationPage(WebDriver driver) {
@@ -28,18 +27,17 @@ public class SenderReceiverInformationPage extends BasePage {
     By submitButton = By.cssSelector("[type='submit']");
     By nowRadioButton = By.cssSelector("div.ember-view.button.button-now.selected");
     By sms = By.cssSelector("svg[gtm='method-sms']");
-    By phoneNumber = By.id("sms");
-    By name = By.cssSelector("[placeholder='שם שולח המתנה']");
+    By phoneNumberReceiver = By.id("sms");
     By continuePaymentButton = By.cssSelector("[type='submit']");
     By phoneNumberOfTheSender = By.cssSelector("input[placeholder='מספר נייד']");
 
-
+// פונקצייה המוודאת האם האלמנט נבחר, אם כן היא לא עושה דבר, אם לא היא מבצעת לחיצה על האלמנט
     public  void isSelected_someOneElse() {
         selected(someOneElseRadioButton);
     }
-
+// פונקצייה המזינה את שדה מקבל המתנה
     public  void nameOfReceivesA_giftField() throws Exception {
-        writeText(nameOfReceivesA_gift, (readFromFile("firstName")));
+        writeText(nameOfReceivesA_gift, (readFromFile("Receiver")));
     }
 
 // Select an event from the dropDown list
@@ -52,46 +50,40 @@ public class SenderReceiverInformationPage extends BasePage {
         String value = eventList.get(num).getAttribute("value");
         WebElement chosenEvent = events.findElement(By.cssSelector("li[value='" + value + "']"));
         chosenEvent.click();
-
     }
     // הזנת שם פרטי של מקבל המתנה שינוי
     public void writingNameOfSenderField() throws Exception {
-        writeText(nameOfSender, (readFromFile("firstName")));
+        writeText(nameOfSender, (readFromFile("Blessing")));
     }
     // העלאת תמונה
     public void click_uploadPicture() {
         driver.findElement(uploadPicture).sendKeys(pathPicture);
     }
-
+    //לחיצה על כפתור sumbit
     public void click_submit() {
         click(continuePaymentButton);
     }
-
+// פונקצייה המוודאת האם האלמנט נבחר, אם כן היא לא עושה דבר, אם לא היא מבצעת לחיצה על האלמנט
     public void nowRadioButton_select() {
         selected(nowRadioButton);
     }
-
+    // פונקצייה הלוחצת על כפתור SMS
     public void click_sms() {
         click(sms);
     }
-    // הזנת מספר טלפון
+    // הזנת שדה מספר פלאפון של המקבל
     public void phoneNumberField() throws Exception {
-        writeText(phoneNumber, readFromFile("phoneNumber"));
+        writeText(phoneNumberReceiver, readFromFile("phoneNumberReceiver"));
     }
-   /* // לבדוק
-    public  void nameField() throws Exception {
-        writeText(name, (readFromFile("firstName")));
+// הזנת שדה מספר פלאפון של השולח
+    public void writePhoneFieldSender() throws Exception {
+        writeText(phoneNumberOfTheSender, readFromFile("phoneNumberSender"));
     }
-    //*/
-
-    public void phoneField() throws Exception {
-        writeText(phoneNumberOfTheSender, readFromFile("phoneNumber"));
-    }
-
+    //לחיצה על כפתור sumbit
     public void click_submitButton() {
         click(submitButton);
     }
-
+//פונקצייה המוודא שהגעתי למסך הנכון בעזרת ASSERT והיא מקבלת אלמנט וכן טקסט ובודקת האם הוא קיים
     public void checkPage() throws Exception {
         checkElementStatus(checkPage,readFromFile("payment"));
     }

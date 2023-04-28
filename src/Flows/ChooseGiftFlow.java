@@ -11,10 +11,14 @@ public class ChooseGiftFlow {
         chooseGiftPage = new ChooseGiftPage(driver);
     }
 
-    public void pickBusinessFromList() throws Exception {
+    public boolean pickBusinessFromList() throws Exception {
         chooseGiftPage.assertURL();
         chooseGiftPage.pickFromBusinessList();
         chooseGiftPage.pickSubOption();
-        chooseGiftPage.checkPage();
+        return chooseGiftPage.checkPage();
+    }
+
+    public void screenExtra(){
+        chooseGiftPage.scrollAndTakeScreenShot();
     }
 }

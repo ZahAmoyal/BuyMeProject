@@ -20,17 +20,6 @@ public class HomePage extends BasePage {
     By searchResult = By.cssSelector(".title-xxl.bottom-md.top-none");
     By searchText = By.cssSelector("span[class=\"text\"]");
     By logo = By.cssSelector("img[alt=\"לוגו BUY-ME\"]");
-    By myAccountDropDown = By.cssSelector(".ember-view.dropdown.solid");
-    By logOutButton = By.cssSelector("a[class=\"dropdown-item\"]");
-    //WebElement loadingweb = driver.findElement(By.cssSelector("[id='app-loading-img']"));
-    //List<WebElement> loading = loadingweb.findElements(By.tagName("div"));
-
-    public void clickMyAccount() {
-        click(myAccountDropDown);
-    }
-    public void clickLogOut(){
-        click(logOutButton);
-    }
 
     public void clickLoginSignUpButton() {
         click(login_SignUpButton);
@@ -58,27 +47,29 @@ public class HomePage extends BasePage {
             click(popUp);
         }
     }
-
+//פונקצייה לבחירת סכום נעזרת בפונקצייה הראשית למציאת ערך רנדומלי
     public void chooseAnAmount() {
         this.clickSum();
         selectFromDropDown().click();
     }
-
+    //פונקצייה לבחירת איזור נעזרת בפונקצייה הראשית למציאת ערך רנדומלי
     public void selectAnArea() {
         this.clickArea();
         selectFromDropDown().click();
     }
 
+//פונקצייה לבחירת קטגוריה
     public void categorySelection() throws InterruptedException {
         this.clickCategory();
         WebElement industries = driver.findElement(By.cssSelector("label.ember-view.bm-field.bm-select.show-options.search.with-icon.empty.md.no-label.with-search"));
         List<WebElement> category = industries.findElements(By.tagName("li"));
         String numValue = category.get(randomNum(1, category.size())).getAttribute("id");
         WebElement choose = industries.findElement(By.cssSelector("li[id=\"" + (numValue) + "\"]"));
+        Thread.sleep(1000);
         choose.click();
     }
 
-//
+//פונקצייה המקבלת אלמנט ובו רשימת בחירה ומחזירה בחירה רנדומלית
     public WebElement selectFromDropDown() {
         WebElement industries = driver.findElement(By.cssSelector("label.ember-view.bm-field.bm-select.show-options.with-icon.empty.md.no-label"));
         List<WebElement> dropDown = industries.findElements(By.tagName("li"));
@@ -86,10 +77,11 @@ public class HomePage extends BasePage {
         WebElement choose = industries.findElement(By.cssSelector("li[id=\"" + (numValue) + "\"]"));
         return choose;
     }
+    //פונקצייה ללחיצה על לוגו
     public void clickLogo(){
         click(logo);
     }
-
+// פונקצייה לבדיקה האם בתוך הטקסט קיים result ומחזירה ערך בוליאני
     public boolean checkTitle() throws Exception {
         if (getText(searchResult).contains(readFromFile("result"))){
             clickLogo();

@@ -1,3 +1,5 @@
+/*
+
 package Data;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -15,10 +17,11 @@ public class ExtentReportSingleton {
     public static synchronized ExtentReports getReporter() {
         if (extent == null) {
             extent = new ExtentReports();
-            htmlReporter = new ExtentSparkReporter("C:\\project\\report.html");
+            htmlReporter = new ExtentSparkReporter("C:\\selenium-java-4.8.0\\Data\\project4444.html");
             extent.attachReporter(htmlReporter);
         }
         return extent;
     }
 }
 
+*/

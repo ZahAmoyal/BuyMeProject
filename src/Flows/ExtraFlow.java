@@ -2,6 +2,7 @@ package Flows;
 
 import PageObjects.ExtraPage;
 import PageObjects.HomePage;
+import Tests.BaseTest;
 import org.openqa.selenium.WebDriver;
 
 public class ExtraFlow {
@@ -11,8 +12,19 @@ public class ExtraFlow {
         extraPage = new ExtraPage(driver);
     }
 
-    public void extraFlow() throws Exception {
+    public void extraFlow_PreviewBlessing() throws Exception {
         extraPage.clickOnThePreviewButton();
+
+    }
+
+    public void assertColor() throws Exception {
         extraPage.getTextToSend();
+    }
+
+
+    public void logOutAndAssertErrorMessage(){
+        extraPage.goHomePage();
+        extraPage.clickMyAccount();
+        extraPage.clickLogOut();
     }
 }
