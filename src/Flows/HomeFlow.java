@@ -12,8 +12,11 @@ public class HomeFlow {
         homePage = new HomePage(driver);
     }
 
-    public void moveToLogin(){
+    public void closePopUps(){
         homePage.ifDis();
+        homePage.ifDisp();
+    }
+    public void moveToLogin(){
         homePage.clickLoginSignUpButton();
     }
 
@@ -25,6 +28,14 @@ public class HomeFlow {
             homePage.categorySelection();
             homePage.clickSubmit();
         }while ((homePage.checkTitle())==true);
+    }
+
+    public void checkLoginFlow() throws Exception {
+        homePage.checkPage();
+    }
+
+    public void extra_Loading() throws InterruptedException {
+        homePage.loading();
     }
 
 

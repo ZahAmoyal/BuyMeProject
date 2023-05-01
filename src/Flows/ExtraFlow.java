@@ -14,7 +14,8 @@ public class ExtraFlow {
 
     public void extraFlow_PreviewBlessing() throws Exception {
         extraPage.clickOnThePreviewButton();
-
+        extraPage.assertionForBlessing();
+        extraPage.clickClosePopUp();
     }
 
     public void assertColor() throws Exception {

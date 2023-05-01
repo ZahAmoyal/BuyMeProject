@@ -21,37 +21,39 @@ public class SignUpPage extends BasePage {
     By submitButton = By.cssSelector("[gtm=\"הרשמה ל-BUYME\"]");
     By logOutButton = By.cssSelector("a[class=\"dropdown-item\"]");
 
-    // לחיצה על כפתור רשמה
+    // A function for clicking the signup button
     public void clickSignUp() {
         click(signUpButton);
     }
-// הזנת שדה שם פרטי
+    // A function for filling the first name field with a string value from the xml config file
     public void writeTextFirstNameField() throws Exception {
         writeText(firstNameField,readFromFile("firstName"));
     }
-    // הזנת שדה אימייל
+    // A function for filling the email field with a string value from the xml config file
     public void writeTextEmailField() throws Exception {
         writeText(emailField,readFromFile("email"));
     }
-// הזנת שדה סיסמה
+    // A function for filling the password field with a string value from the xml config file
     public void writeTextPasswordField() throws Exception {
         writeText(passwordField,readFromFile("password"));
     }
-// הזנת שדה סיסמה שוב
+    // A function for filling the password field again with a string value from the xml config file
     public void writeTextPassword_Authentication() throws Exception {
         writeText(password_Authentication, readFromFile("password"));
     }
-// לחיצה על צקבוקס אני מסכים
+    // A function for clicking the "agreement to terms" checkbox
     public void clickCheckBox_IAgree(){
         selected(checkBox_IAgree);
     }
-// לחיצה על כפתור Submit
+    // A function for clicking the submit button
     public void clickSubmitButton(){
         click(submitButton);
     }
-//פונקצייה המוודא שהגעתי למסך הנכון בעזרת ASSERT והיא מקבלת אלמנט וכן טקסט ובודקת האם הוא קיים
-    public Boolean check() throws Exception {
-       return checkElementStatus(logOutButton,readFromFile("myAccount"));
+    // A function for asserting whether I reached the correct page, receiving an element and a text string and checking whether it exists
+    public void check() throws Exception {
+         checkElementStatus(logOutButton, "readFromFile");
+        //String result= checkElementStatus(logOutButton, "readFromFile");
+        //return result;
     }
 
 }

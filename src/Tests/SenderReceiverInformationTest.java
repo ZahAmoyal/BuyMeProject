@@ -7,22 +7,25 @@ import org.junit.Test;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import static java.lang.System.currentTimeMillis;
+
 
 public class SenderReceiverInformationTest extends BaseTest {
 
 
     @Test
     public void senderGift_05() throws Exception {
-        extentLogger = extentReport.createTest("SenderGift_05");
+        extentLogger = extentReport.createTest("Test_05");
         homeFlow.moveToLogin();
         signUpFlow.signUpBuyMeFlow();
         homeFlow.searchGift();
         chooseGiftFlow.pickBusinessFromList();
+        senderReceeiverInformationFlow.senderGift();
         try {
-            senderReceeiverInformationFlow.senderGift();
-            extentLogger.log(Status.PASS,("Test passed!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath)).build());
+            senderReceeiverInformationFlow.checkSenderReceiverInformationFlow();
+            extentLogger.log(Status.PASS,("Element was found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
         }catch (NoSuchElementException e){
-            extentLogger.log(Status.FAIL,("Test failed!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath)).build());
+            extentLogger.log(Status.FAIL,("Element was not found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
         }
     }
 

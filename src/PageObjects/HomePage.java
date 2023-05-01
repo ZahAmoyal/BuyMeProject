@@ -1,7 +1,10 @@
 package PageObjects;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class HomePage extends BasePage {
@@ -12,6 +15,7 @@ public class HomePage extends BasePage {
     }
 
     By popUp = By.cssSelector("div.adoric_element.element-shape.closeLightboxButton");
+    By popUp2 = By.cssSelector("button[aria-label=\"close\"]");
     By login_SignUpButton = By.cssSelector("li[class='notSigned']");
     By sum = By.cssSelector("span[alt='סכום']");
     By area = By.cssSelector("span[title='אזור']");
@@ -41,60 +45,81 @@ public class HomePage extends BasePage {
         click(sum);
     }
 
-    // פונקצייה לסגירת פופאפ שהיה (כרגע לא פעיל)
+    // A function for closing the popup window (not active at the moment)
     public void ifDis() {
-        if (displayed(popUp)) {
+        if (displayed(popUp)||displayed(popUp2)) {
             click(popUp);
         }
     }
-//פונקצייה לבחירת סכום נעזרת בפונקצייה הראשית למציאת ערך רנדומלי
-    public void chooseAnAmount() {
+    public void ifDisp() {
+        if (displayed(popUp2)) {
+            click(popUp2);
+        }
+    }
+
+    // A function for choosing a sum using the main function for finding a random value
+    public void chooseAnAmount() throws InterruptedException {
         this.clickSum();
         selectFromDropDown().click();
     }
-    //פונקצייה לבחירת איזור נעזרת בפונקצייה הראשית למציאת ערך רנדומלי
-    public void selectAnArea() {
+
+    // A function for choosing an area using the main function for finding a random value
+    public void selectAnArea() throws InterruptedException {
         this.clickArea();
         selectFromDropDown().click();
     }
 
-//פונקצייה לבחירת קטגוריה
+    // A function for choosing a category using the main function for finding a random value
     public void categorySelection() throws InterruptedException {
         this.clickCategory();
+        Thread.sleep(1000);
         WebElement industries = driver.findElement(By.cssSelector("label.ember-view.bm-field.bm-select.show-options.search.with-icon.empty.md.no-label.with-search"));
         List<WebElement> category = industries.findElements(By.tagName("li"));
-        String numValue = category.get(randomNum(1, category.size())).getAttribute("id");
+        String numValue = category.get(randomNum(3, category.size())).getAttribute("id");
         WebElement choose = industries.findElement(By.cssSelector("li[id=\"" + (numValue) + "\"]"));
-        Thread.sleep(1000);
         choose.click();
     }
 
-//פונקצייה המקבלת אלמנט ובו רשימת בחירה ומחזירה בחירה רנדומלית
-    public WebElement selectFromDropDown() {
+    // A function for receiving an element with a list and returning a random value
+    public WebElement selectFromDropDown() throws InterruptedException {
+        Thread.sleep(1000);
         WebElement industries = driver.findElement(By.cssSelector("label.ember-view.bm-field.bm-select.show-options.with-icon.empty.md.no-label"));
         List<WebElement> dropDown = industries.findElements(By.tagName("li"));
-        String numValue = dropDown.get(randomNum(1, dropDown.size())).getAttribute("id");
+        String numValue = dropDown.get(randomNum(2, dropDown.size())).getAttribute("id");
         WebElement choose = industries.findElement(By.cssSelector("li[id=\"" + (numValue) + "\"]"));
         return choose;
     }
-    //פונקצייה ללחיצה על לוגו
-    public void clickLogo(){
+
+    //A function for pressing the logo button
+    public void clickLogo() {
         click(logo);
     }
-// פונקצייה לבדיקה האם בתוך הטקסט קיים result ומחזירה ערך בוליאני
+
+    // A function for checking whether the text string contains a desired string which returns a boolean value
     public boolean checkTitle() throws Exception {
-        if (getText(searchResult).contains(readFromFile("result"))){
+        if (getText(searchResult).contains(readFromFile("result"))) {
             clickLogo();
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     public void checkPage() throws Exception {
         System.out.println(getText(searchText));
-        checkElementStatus(searchText,readFromFile("search"));
+        checkElementStatus(searchText, readFromFile("search"));
     }
+
+   public void loading() throws InterruptedException {
+       try {
+           driver.navigate().refresh();
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(500000)); // set timeout to 50 seconds
+           WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("app-loading-img")));
+           System.out.println(element.getSize());
+       }catch (Exception e){
+           e.getMessage();
+           loading();
+       }
+   }
 }
 

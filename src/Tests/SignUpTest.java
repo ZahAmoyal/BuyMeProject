@@ -1,36 +1,45 @@
 package Tests;
 
 
-import Flows.SignUpFlow;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
-import org.bson.assertions.Assertions;
+import org.apache.commons.io.FileUtils;
 import org.junit.*;
-import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.junit.FixMethodOrder;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
+import static java.lang.System.currentTimeMillis;
 
 public class SignUpTest extends BaseTest {
+
+//    @Before
+//    public void beforeTest(){
+//
+//        driver.get("https://buyme.co.il/");
+//    }
 
     @Test
     public void registerToBuyMe_Test_01() throws Exception {
         extentLogger = extentReport.createTest("Test_01 - Register To Buy Me");
         homeFlow.moveToLogin();
+        signUpFlow.signUpBuyMeFlow();
         try {
-            signUpFlow.signUpBuyMeFlow();
-            extentLogger.log(Status.PASS, ("Element was found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath)).build());
-        } catch (NoSuchElementException e) {
-            extentLogger.log(Status.FAIL, ("Element was not found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath)).build());
+            signUpFlow.checkSignUpFlow();
+            extentLogger.log(Status.PASS, ("Test Pass!")+ MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+        }catch (AssertionError exception){
+            extentLogger.log(Status.FAIL, (exception.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath, getClass().getCanonicalName()), String.valueOf(currentTimeMillis())).build());
         }
     }
 
     @After
-    public void afterTest() {
+    public void afterTest() throws IOException {
         extentReport.flush();
+        Desktop.getDesktop().browse(new File("src/Data/Extent-Report-BuyMe-Project.html").toURI());
     }
 
 }

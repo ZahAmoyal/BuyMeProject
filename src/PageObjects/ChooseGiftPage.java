@@ -20,18 +20,16 @@ public class ChooseGiftPage extends BasePage {
     }
 
 
-    // פונקצייה לקבלת רשימה ובחירת ערך רנדומלי (נעזר בפנקציית rand)
+    // A function for receiving a list and returning a random value (using rand function)
     public void pickFromBusinessList() throws InterruptedException {
-        //Thread.sleep(3000);
         WebElement businesses = driver.findElement(By.cssSelector("ul.grid.bm-product-cards"));
         List<WebElement> businessList = businesses.findElements(By.cssSelector("div.ember-view.bm-product-card-link.mx-4.lr-6.sm-12"));
         String numValue = businessList.get(randomNum(0,businessList.size())).getAttribute("id");
-        //Thread.sleep(1000);
         WebElement choose = businesses.findElement(By.cssSelector("[id=" + numValue + "]"));
         choose.click();
     }
 
-    // פונקצייה לקבלת רשימה ובחירת ערך רנדומלי (נעזר בפנקציית rand)
+    // A function for receiving a list and returning a random value (using rand function)
     public void pickSubOption() throws InterruptedException {
         Thread.sleep(1500);
         WebElement business = driver.findElement(By.cssSelector(".grid.gifts-list"));
@@ -46,11 +44,12 @@ public class ChooseGiftPage extends BasePage {
             chosen.sendKeys(Keys.ENTER);
         }
     }
-    // פונקתייה המשווה בין אלמנט לבין טקסט המגיע מהxml
-    public boolean checkPage() throws Exception {
-        return checkElementStatus(title,readFromFile("title"));
+// A function for comparing between an element and a string value from the xml config file
+    public void checkPage() throws Exception {
+        checkElementStatus(title, readFromFile("title"));
+        //return "Fail";
     }
-// פונקצייה שמשתמשת בפונקציית הגלילה לאלמנט ובנוסף מבצעת צילום והוספה לדוח
+    // A function for scrolling down to a desired element, taking a screenshot and add it to the report
     public void scrollAndTakeScreenShot(){
         WebElement bottomPage = driver.findElement(footer);
         moveElement(bottomPage);

@@ -5,13 +5,12 @@ import org.openqa.selenium.WebDriver;
 
 public class SignUpFlow {
     SignUpPage signUpPage;
-    Boolean result;
 
     public SignUpFlow(WebDriver driver) {
         signUpPage = new SignUpPage(driver);
     }
 
-    public boolean signUpBuyMeFlow() throws Exception {
+    public void signUpBuyMeFlow() throws Exception {
         signUpPage.clickSignUp();
         signUpPage.writeTextFirstNameField();
         signUpPage.writeTextEmailField();
@@ -19,7 +18,10 @@ public class SignUpFlow {
         signUpPage.writeTextPassword_Authentication();
         signUpPage.clickCheckBox_IAgree();
         signUpPage.clickSubmitButton();
-        return signUpPage.check();
+
+    }
+    public void checkSignUpFlow() throws Exception {
+       signUpPage.check();
     }
 
 }

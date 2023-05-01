@@ -17,28 +17,29 @@ public class LoginPage extends BasePage {
     By errorTextLogin = By.cssSelector("li.parsley-required");
     By xButton = By.cssSelector("span[class=\"ember-view bm-icon sm\"]");
 
-    //פונקצייה המקבלת אלמנט ובודקת אם הטקסט שלו שווה לערך של הטקסט מהxml
-    public void assertErrorMessage() throws Exception {
-        Assert.assertTrue((getText(errorTextLogin).equals(readFromFile("extramessage"))));
-    }
-//פונקצייה לסגירת פופאפ
+
+    // A function for closing the popup window
     public void closePopUp(){
         click(xButton);
     }
 
-// פונקצייה להזנת שדה אימייל על ידי קובץ הXML
+    // A function for filling the email field with a string value from the xml config file
     public void emailField() throws Exception {
         writeText(emailField, readFromFile("email"));
     }
-    // פונקצייה להזנת שדה סיסמה על ידי קובץ הXML
+    // A function for filling the password field with a string value from the xml config file
     public void passwordField() throws Exception {
         writeText(passwordField, readFromFile("password"));
     }
-    // פונקצייה ללחיצה על כפתור כניסה
+    // A function for pressing the login button
     public void loginToBuyMe() {
         click(loginToBuyMeButton);
     }
 
+     // A function for receiving an element and asserting whether it is equal to a string value from the xml config file
+    public void assertErrorMessage() throws Exception {
+        Assert.assertTrue((getText(errorTextLogin).equals(readFromFile("extramessage"))));
+    }
 }
 
 

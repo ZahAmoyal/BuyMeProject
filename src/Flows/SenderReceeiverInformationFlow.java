@@ -23,9 +23,11 @@ public class SenderReceeiverInformationFlow {
         senderReceiverInformationPage.nowRadioButton_select();
         senderReceiverInformationPage.click_sms();
         senderReceiverInformationPage.phoneNumberField();
-        //senderReceiverInformationPage.nameField();
         senderReceiverInformationPage.writePhoneFieldSender();
         senderReceiverInformationPage.click_submitButton();
+    }
+
+    public void checkSenderReceiverInformationFlow() throws Exception {
         senderReceiverInformationPage.checkPage();
     }
 

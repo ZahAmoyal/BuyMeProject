@@ -33,13 +33,13 @@ public class ExtraPage extends BasePage {
         click(logOutButton);
     }
 
-//םונקצייה הסוגרת את הפופאפ של login
+    // A function for closing the login popup
     public void clickClosePopUp(){
         click(closePopUp);
     }
 
 
-//
+    //
     public void logOut(){
         clickMyAccount();
         clickLogOut();
@@ -56,30 +56,30 @@ public class ExtraPage extends BasePage {
         click(backButton);
         goHomePage();
     }
-//פונקציה הלוחצת על הImage של Buyme ומועברת לדף הראשי
+    // A function for clicking on the homepage button
     public void goHomePage() {
         click(homePageButton);
     }
 
-// פונקצייה הלוחצת על כפתור לצפייה במתנה ולאחר מכן מבצעת ASSERT בעזרת הפונקצייה שלמטה, וכן סוגרת את הפופאפ
+    // A function for pressing the "view present" button, asserting the results and closing the popup
     public void clickOnThePreviewButton() throws Exception {
         click(preview);
-        Thread.sleep(2000);
-        assertionForBlessing();
-        clickClosePopUp();
+       // Thread.sleep(1000);
     }
 
-    // פונקצייה המבצעת תהליך לחיצה על כפתור חזור ולאחר מכן לוקחת את צבע של אלמנט ומבצעת Assert לצבע שלו עם טקסט מהxml
+    // A function for pressing the back button, then taking the element's color and asserts it using a string value for the xml config file
     public void getTextToSend() throws Exception {
         click(backButton);
         String colorString = driver.findElement(howSendText).getCssValue("color");
         String colorValue = Color.fromString(colorString).asHex();
         Assert.assertEquals(readFromFile("colorOfText"),colorValue);
+
     }
-    // פונקצייה לבדיקת ההזמנה - מבוצעת על ידי ASSERT ובודקת את שם השולח , שם המקבל והברכה
+    // A function for asserting the receiver's and sender's names and the blessing's content
     public void assertionForBlessing() throws Exception {
         Assert.assertTrue(getText(senderAndReceiverName).contains(readFromFile("Sender")));
         Assert.assertTrue(getText(senderAndReceiverName).contains(readFromFile("Receiver")));
-        Assert.assertTrue(getText(blessing).equals(readFromFile("Blessing")));
+        Assert.assertEquals(getText(blessing),(readFromFile("Blessing")));
     }
+
 }

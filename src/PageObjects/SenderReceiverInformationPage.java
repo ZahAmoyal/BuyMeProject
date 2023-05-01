@@ -31,61 +31,71 @@ public class SenderReceiverInformationPage extends BasePage {
     By continuePaymentButton = By.cssSelector("[type='submit']");
     By phoneNumberOfTheSender = By.cssSelector("input[placeholder='מספר נייד']");
 
-// פונקצייה המוודאת האם האלמנט נבחר, אם כן היא לא עושה דבר, אם לא היא מבצעת לחיצה על האלמנט
-    public  void isSelected_someOneElse() {
+    // A function for checking whether an element was chosen: if it was, it does nothing; if it wasn't, it clicks the element
+    public void isSelected_someOneElse() {
         selected(someOneElseRadioButton);
     }
-// פונקצייה המזינה את שדה מקבל המתנה
-    public  void nameOfReceivesA_giftField() throws Exception {
+
+    // A function for filling the receiver's name field with a string value from the xml config file
+    public void nameOfReceivesA_giftField() throws Exception {
         writeText(nameOfReceivesA_gift, (readFromFile("Receiver")));
     }
 
-// Select an event from the dropDown list
+    // Select an event from the dropDown list
     public void chooseEvent() throws InterruptedException {
         click(events);
         Thread.sleep(500);
         WebElement events = driver.findElement(By.cssSelector(".ember-view.bm-field.bm-select.show-options.with-icon.empty.md.with-label"));
         List<WebElement> eventList = events.findElements(By.cssSelector(".ember-view.bm-select-option"));
-        int num = (randomNum(1,eventList.size()));
+        int num = (randomNum(1, eventList.size()));
         String value = eventList.get(num).getAttribute("value");
         WebElement chosenEvent = events.findElement(By.cssSelector("li[value='" + value + "']"));
         chosenEvent.click();
     }
-    // הזנת שם פרטי של מקבל המתנה שינוי
+
+    // A function for filling the receiver's first name field with a string value from the xml config file
     public void writingNameOfSenderField() throws Exception {
         writeText(nameOfSender, (readFromFile("Blessing")));
     }
-    // העלאת תמונה
+
+    // A function for uploading a picture
     public void click_uploadPicture() {
         driver.findElement(uploadPicture).sendKeys(pathPicture);
     }
-    //לחיצה על כפתור sumbit
+
+    //A function for clicking the submit button
     public void click_submit() {
         click(continuePaymentButton);
     }
-// פונקצייה המוודאת האם האלמנט נבחר, אם כן היא לא עושה דבר, אם לא היא מבצעת לחיצה על האלמנט
+
+    // A function for checking whether an element was chosen: if it was, it does nothing; if it wasn't, it clicks the element
     public void nowRadioButton_select() {
         selected(nowRadioButton);
     }
-    // פונקצייה הלוחצת על כפתור SMS
+
+    // A function for clicking the SMS button
     public void click_sms() {
         click(sms);
     }
-    // הזנת שדה מספר פלאפון של המקבל
+
+    // A function for filling the receiver's phone number field with a string value from the xml config file
     public void phoneNumberField() throws Exception {
         writeText(phoneNumberReceiver, readFromFile("phoneNumberReceiver"));
     }
-// הזנת שדה מספר פלאפון של השולח
+
+    // A function for filling the sender's phone number field with a string value from the xml config file
     public void writePhoneFieldSender() throws Exception {
         writeText(phoneNumberOfTheSender, readFromFile("phoneNumberSender"));
     }
-    //לחיצה על כפתור sumbit
+
+    //A function for clicking the submit button
     public void click_submitButton() {
         click(submitButton);
     }
-//פונקצייה המוודא שהגעתי למסך הנכון בעזרת ASSERT והיא מקבלת אלמנט וכן טקסט ובודקת האם הוא קיים
+
+    // A function for asserting whether I reached the correct page, receiving an element and a text string and checking whether it exists
     public void checkPage() throws Exception {
-        checkElementStatus(checkPage,readFromFile("payment"));
+        checkElementStatus(checkPage, readFromFile("payment"));
     }
 }
 

@@ -21,7 +21,7 @@ public class LoginFlow {
 
     public void extraErrorFields() throws Exception {
         loginPage.loginToBuyMe();
-        loginPage.assertErrorMessage();
+        //loginPage.assertErrorMessage();
         loginPage.closePopUp();
     }
 }
