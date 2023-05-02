@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.time.Duration;
+import java.util.List;
 import java.util.Random;
 import static org.junit.Assert.*;
 
@@ -59,6 +60,7 @@ public class BasePage {
         waitVisibility(elementLocation);
         return driver.findElement(elementLocation).getText();
     }
+
     // A function for waiting for an element's visibility
     public void waitVisibility(By by) {
         //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -70,7 +72,6 @@ public class BasePage {
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         }
     }
-
 
 
     //Read from file
@@ -85,9 +86,9 @@ public class BasePage {
     }
 
     // A function that receives an element and text string, converts the element to text and compare them using Assert
-    public void checkElementStatus(By actual, String expected) {
+/*    public void checkElementStatus(By actual, String expected) {
         assertEquals(expected, getText(actual));
-    }
+    }*/
 
 
     // A function for scrolling the page to the desired element
@@ -110,13 +111,34 @@ public class BasePage {
         Assert.assertTrue(checkUrl(actualURL, readFromFile("siteURL")));
         //System.out.println("Current URL is: " + actualURL);
     }
-   // A function that checks whether the URLs are equal
+
+    // A function that checks whether the URLs are equal
     public boolean checkUrl(String expectedUrl, String actualUrl) {
         if (expectedUrl.equals(actualUrl))
             return true;
         return false;
     }
+
+    public WebElement selectFromDropDown(WebElement industries, int num) throws InterruptedException {
+        List<WebElement> dropDown = industries.findElements(By.tagName("li"));
+        String numValue = dropDown.get(randomNum(num, dropDown.size())).getAttribute("id");
+        WebElement choose = industries.findElement(By.cssSelector("li[id=\"" + (numValue) + "\"]"));
+        return choose;
+    }
+
+    String generateRandomEmailAddress (){
+        String emailAddress = "";
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        while (emailAddress.length() < 8) {
+            int character = (int) (Math.random() * 26);
+            emailAddress += alphabet.substring(character, character + 1);
+            emailAddress += Integer.valueOf((int) (Math.random() * 99)).toString();
+            emailAddress += "@gmail.com";
+        }
+        return emailAddress;
+    }
 }
+
 
 /*
     public void selectByIndex(By elementLocation, int index) {

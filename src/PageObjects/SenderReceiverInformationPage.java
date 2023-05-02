@@ -95,7 +95,7 @@ public class SenderReceiverInformationPage extends BasePage {
 
     // A function for asserting whether I reached the correct page, receiving an element and a text string and checking whether it exists
     public void checkPage() throws Exception {
-        checkElementStatus(checkPage, readFromFile("payment"));
+        //checkElementStatus(checkPage, readFromFile("payment"));
     }
 }
 

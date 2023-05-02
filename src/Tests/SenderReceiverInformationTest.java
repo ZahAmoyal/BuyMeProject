@@ -23,9 +23,9 @@ public class SenderReceiverInformationTest extends BaseTest {
         senderReceeiverInformationFlow.senderGift();
         try {
             senderReceeiverInformationFlow.checkSenderReceiverInformationFlow();
-            extentLogger.log(Status.PASS,("Element was found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.log(Status.PASS,("Test pass"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
         }catch (NoSuchElementException e){
-            extentLogger.log(Status.FAIL,("Element was not found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.log(Status.FAIL,(e.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
         }
     }
 

@@ -23,16 +23,10 @@ public class HomeTest extends BaseTest{
         homeFlow.searchGift();
         try {
             homeFlow.checkLoginFlow();
-            extentLogger.log(Status.PASS, ("Element was found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
-        }catch (AssertionError e){
-            extentLogger.log(Status.FAIL, (e.getLocalizedMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.log(Status.PASS, ("Test pass"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+        } catch (AssertionError e) {
+            extentLogger.log(Status.FAIL, (e.getLocalizedMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
         }
-       /* try {
-            homeFlow.searchGift();
-            extentLogger.log(Status.PASS,("Element was found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath)).build());
-        }catch (NoSuchElementException e){
-            extentLogger.log(Status.FAIL,("Element was not found!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath)).build());
-        }*/
     }
     @After
     public void afterTest() {

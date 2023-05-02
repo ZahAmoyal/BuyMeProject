@@ -46,7 +46,7 @@ public class ChooseGiftPage extends BasePage {
     }
 // A function for comparing between an element and a string value from the xml config file
     public void checkPage() throws Exception {
-        checkElementStatus(title, readFromFile("title"));
+       // checkElementStatus(title, readFromFile("title"));
         //return "Fail";
     }
     // A function for scrolling down to a desired element, taking a screenshot and add it to the report

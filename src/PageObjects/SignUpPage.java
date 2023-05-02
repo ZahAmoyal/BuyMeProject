@@ -19,7 +19,16 @@ public class SignUpPage extends BasePage {
     private By password_Authentication = By.cssSelector("[placeholder=\"אימות סיסמה\"]");
     By checkBox_IAgree = By.cssSelector("div.login-options.grid.register-text");
     By submitButton = By.cssSelector("[gtm=\"הרשמה ל-BUYME\"]");
-    By logOutButton = By.cssSelector("a[class=\"dropdown-item\"]");
+    private By logOutButton = By.cssSelector("a[class=\"dropdown-item\"]");
+
+
+    public String getLogOutButton() {
+        return getText(logOutButton);
+    }
+    public String getAssertExpected() throws Exception {
+        return readFromFile("myAccount");
+    }
+
 
     // A function for clicking the signup button
     public void clickSignUp() {
@@ -31,7 +40,7 @@ public class SignUpPage extends BasePage {
     }
     // A function for filling the email field with a string value from the xml config file
     public void writeTextEmailField() throws Exception {
-        writeText(emailField,readFromFile("email"));
+        writeText(emailField,generateRandomEmailAddress());
     }
     // A function for filling the password field with a string value from the xml config file
     public void writeTextPasswordField() throws Exception {
@@ -50,10 +59,11 @@ public class SignUpPage extends BasePage {
         click(submitButton);
     }
     // A function for asserting whether I reached the correct page, receiving an element and a text string and checking whether it exists
-    public void check() throws Exception {
-         checkElementStatus(logOutButton, "readFromFile");
+   /* public void check() throws Exception {
+         checkElementStatus(logOutButton, "readFromFile");*/
         //String result= checkElementStatus(logOutButton, "readFromFile");
         //return result;
     }
 
-}
+
+

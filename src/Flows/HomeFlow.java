@@ -13,8 +13,8 @@ public class HomeFlow {
     }
 
     public void closePopUps(){
-        homePage.ifDis();
-        homePage.ifDisp();
+        homePage.ifDispopUpAppear_OnTheBigScreen();
+        homePage.ifDisPopUpAppear_OnTheRightSideScreen();
     }
     public void moveToLogin(){
         homePage.clickLoginSignUpButton();

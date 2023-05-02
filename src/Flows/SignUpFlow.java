@@ -1,7 +1,10 @@
 package Flows;
 
 import PageObjects.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import static org.junit.Assert.assertEquals;
 
 public class SignUpFlow {
     SignUpPage signUpPage;
@@ -18,11 +21,10 @@ public class SignUpFlow {
         signUpPage.writeTextPassword_Authentication();
         signUpPage.clickCheckBox_IAgree();
         signUpPage.clickSubmitButton();
-
-    }
-    public void checkSignUpFlow() throws Exception {
-       signUpPage.check();
     }
 
+    public void assertSignUpFlow() throws Exception {
+        assertEquals(signUpPage.getLogOutButton(), signUpPage.getAssertExpected());
+    }
 }
 

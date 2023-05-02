@@ -3,6 +3,7 @@ package Tests;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import freemarker.template.utility.Constants;
 import org.jsoup.nodes.Node;
 import org.junit.After;
 import org.junit.Before;
@@ -32,7 +33,7 @@ public class ExtrasTests extends BaseTest {
         homeFlow.searchGift();
         chooseGiftFlow.pickBusinessFromList();
         senderReceeiverInformationFlow.senderGift();
-        Extra_01_OrderCheck();
+        Extra_01_CheckOrder();
         Extra_02_CheckColor();
         Extra_03_CheckErrorMessage();
         Extra_04_FooterScreenshot();
@@ -48,21 +49,21 @@ public class ExtrasTests extends BaseTest {
     }
 
 
-    public void Extra_01_OrderCheck() {
+    public void Extra_01_CheckOrder() {
         try {
             extraFlow.extraFlow_PreviewBlessing();
-            extentLogger.createNode("Extra_01 - Order check").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode("Extra_01 - Order check").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot( "picture1")).build());
         } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()),String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture1")).build());
         }
     }
 
     public void Extra_02_CheckColor() {
         try {
             extraFlow.assertColor();
-            extentLogger.createNode("Extra_02 - Check color").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getSimpleName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode("Extra_02 - Check color").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture2")).build());
         } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath, getClass().getSimpleName()),String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture2")).build());
 
         }
     }
@@ -72,18 +73,18 @@ public class ExtrasTests extends BaseTest {
             extraFlow.logOutAndAssertErrorMessage();
             homeFlow.moveToLogin();
             loginFlow.extraErrorFields();
-            extentLogger.createNode("Extra_03 - Check Error Message").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode("Extra_03_CheckErrorMessage").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture3")).build());
         } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getName()),String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture3")).build());
         }
     }
 
     public void Extra_04_FooterScreenshot() {
         try {
 
-            extentLogger.createNode("Extra_04 - Footer screenshot").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath, getClass().getName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode("Extra_04_FooterScreenshot").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture4")).build());
         } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getName()),String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture4")).build());
         }
     }
 
@@ -92,9 +93,9 @@ public class ExtrasTests extends BaseTest {
         try {
             //extentLogger = extentReport.createTest("Extra_04 - Footer screenshot");
             homeFlow.extra_Loading();
-            extentLogger.createNode("Extra_05 - Loading Print Size").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getCanonicalName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode("Extra_05_LoadingPrintSize").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture5")).build());
         } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getCanonicalName()),String.valueOf(currentTimeMillis())).build());
+            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture5")).build());
         }
     }
 }

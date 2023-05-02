@@ -29,10 +29,10 @@ public class SignUpTest extends BaseTest {
         homeFlow.moveToLogin();
         signUpFlow.signUpBuyMeFlow();
         try {
-            signUpFlow.checkSignUpFlow();
-            extentLogger.log(Status.PASS, ("Test Pass!")+ MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath,getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            signUpFlow.assertSignUpFlow();
+            extentLogger.log(Status.PASS, ("Test Pass!")+ MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
         }catch (AssertionError exception){
-            extentLogger.log(Status.FAIL, (exception.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(ImagePath, getClass().getCanonicalName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.log(Status.FAIL, (exception.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getCanonicalName()), String.valueOf(currentTimeMillis())).build());
         }
     }
 
