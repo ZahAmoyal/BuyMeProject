@@ -1,6 +1,7 @@
 package Flows;
 
 import PageObjects.*;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class SenderReceeiverInformationFlow {
@@ -27,8 +28,8 @@ public class SenderReceeiverInformationFlow {
         senderReceiverInformationPage.click_submitButton();
     }
 
-    public void checkSenderReceiverInformationFlow() throws Exception {
-        senderReceiverInformationPage.checkPage();
+    public void assertSenderReceiverInformationFlow() throws Exception {
+        Assert.assertEquals(senderReceiverInformationPage.getCheckPage(),senderReceiverInformationPage.getAssertExpected());
     }
 
 }

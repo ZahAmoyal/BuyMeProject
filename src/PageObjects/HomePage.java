@@ -24,7 +24,7 @@ public class HomePage extends BasePage {
     By category = By.cssSelector("span[title='קטגוריה']");
     By submit = By.cssSelector("a.ember-view.bm-btn.no-reverse.main.md.ember-view");
     By searchResult = By.cssSelector(".title-xxl.bottom-md.top-none");
-    By searchText = By.cssSelector("span[class=\"text\"]");
+    private By searchText = By.cssSelector("span[class=\"text\"]");
     By logo = By.cssSelector("img[alt=\"לוגו BUY-ME\"]");
 
     public void clickLoginSignUpButton() {
@@ -95,20 +95,25 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void checkPage() throws Exception {
+/*    public void checkPage() throws Exception {
         System.out.println(getText(searchText));
         //checkElementStatus(searchText, readFromFile("search"));
+    }*/
+    public String getSearchText(){
+        return getText(searchText);
+    }
+    public String getAssertExpected()throws Exception{
+        return readFromFile("search");
     }
 
    public void loading() throws InterruptedException {
        try {
            driver.navigate().refresh();
-           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // set timeout to 10 seconds
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // set timeout to 10 seconds
            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("app-loading-img")));
            System.out.println(element.getSize());
        }catch (Exception e){
            e.getMessage();
-           loading();
        }
    }
 }

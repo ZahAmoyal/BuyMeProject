@@ -14,7 +14,7 @@ public class LoginPage extends BasePage {
     By emailField = By.cssSelector("[placeholder=\"מייל\"]");
     By passwordField = By.cssSelector("[placeholder=\"סיסמה\"]");
     By loginToBuyMeButton = By.cssSelector("[type=\"submit\"]");
-    By errorTextLogin = By.cssSelector("li.parsley-required");
+    private By errorTextLogin = By.cssSelector("li.parsley-required");
     By xButton = By.cssSelector("span[class=\"ember-view bm-icon sm\"]");
 
 
@@ -37,8 +37,15 @@ public class LoginPage extends BasePage {
     }
 
      // A function for receiving an element and asserting whether it is equal to a string value from the xml config file
-    public void assertErrorMessage() throws Exception {
+ /*   public void assertErrorMessage() throws Exception {
         Assert.assertTrue((getText(errorTextLogin).equals(readFromFile("extramessage"))));
+    }*/
+    public String getAssertExpected() throws Exception {
+        return readFromFile("extramessage");
+    }
+
+    public By getErrorTextLogin() {
+        return errorTextLogin;
     }
 }
 

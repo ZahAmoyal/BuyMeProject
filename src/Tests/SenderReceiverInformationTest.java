@@ -22,7 +22,7 @@ public class SenderReceiverInformationTest extends BaseTest {
         chooseGiftFlow.pickBusinessFromList();
         senderReceeiverInformationFlow.senderGift();
         try {
-            senderReceeiverInformationFlow.checkSenderReceiverInformationFlow();
+            senderReceeiverInformationFlow.assertSenderReceiverInformationFlow();
             extentLogger.log(Status.PASS,("Test pass"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
         }catch (NoSuchElementException e){
             extentLogger.log(Status.FAIL,(e.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());

@@ -1,5 +1,6 @@
 package Flows;
 import PageObjects.*;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class LoginFlow {
@@ -21,8 +22,11 @@ public class LoginFlow {
 
     public void extraErrorFields() throws Exception {
         loginPage.loginToBuyMe();
-        //loginPage.assertErrorMessage();
+        AssertErrorMessageFields();
         loginPage.closePopUp();
+    }
+    public void AssertErrorMessageFields() throws Exception {
+        Assert.assertEquals(loginPage.getErrorTextLogin(),loginPage.getAssertExpected());
     }
 }
 

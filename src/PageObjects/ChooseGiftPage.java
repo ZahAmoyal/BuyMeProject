@@ -11,7 +11,7 @@ import static org.openqa.selenium.By.tagName;
 
 public class ChooseGiftPage extends BasePage {
 
-    By title = By.cssSelector("h1.bm-h1");
+    private By title = By.cssSelector("h1.bm-h1");
     By footer = By.cssSelector(".ember-view.bm-mini-footer");
 
     //constructor
@@ -44,15 +44,22 @@ public class ChooseGiftPage extends BasePage {
             chosen.sendKeys(Keys.ENTER);
         }
     }
-// A function for comparing between an element and a string value from the xml config file
+/*// A function for comparing between an element and a string value from the xml config file
     public void checkPage() throws Exception {
        // checkElementStatus(title, readFromFile("title"));
         //return "Fail";
-    }
+    }*/
     // A function for scrolling down to a desired element, taking a screenshot and add it to the report
     public void scrollAndTakeScreenShot(){
         WebElement bottomPage = driver.findElement(footer);
         moveElement(bottomPage);
+    }
+
+    public String getTitle() {
+        return getText(title);
+    }
+    public String getAssertExpected() throws Exception {
+        return readFromFile("title");
     }
 }
 

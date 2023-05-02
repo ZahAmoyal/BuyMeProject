@@ -1,6 +1,7 @@
 package Flows;
 
 import PageObjects.ChooseGiftPage;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class ChooseGiftFlow {
@@ -12,11 +13,12 @@ public class ChooseGiftFlow {
     }
 
     public void pickBusinessFromList() throws Exception {
-        //chooseGiftPage.assertURL();
+        chooseGiftPage.assertURL();
         chooseGiftPage.pickFromBusinessList();
         chooseGiftPage.pickSubOption();
-        chooseGiftPage.checkPage();
-
+    }
+    public void assertChooseGiftFlow() throws Exception {
+        Assert.assertEquals(chooseGiftPage.getTitle(),chooseGiftPage.getAssertExpected());
     }
 
    /* public void checkChooseGiftFlow() throws Exception {

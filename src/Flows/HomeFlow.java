@@ -1,7 +1,7 @@
 package Flows;
 
 import PageObjects.HomePage;
-import dev.failsafe.internal.util.Assert;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class HomeFlow {
@@ -31,7 +31,7 @@ public class HomeFlow {
     }
 
     public void checkLoginFlow() throws Exception {
-        homePage.checkPage();
+       Assert.assertEquals(homePage.getSearchText(), homePage.getAssertExpected());
     }
 
     public void extra_Loading() throws InterruptedException {

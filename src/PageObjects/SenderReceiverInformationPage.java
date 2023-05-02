@@ -18,7 +18,7 @@ public class SenderReceiverInformationPage extends BasePage {
         super(driver);
     }
 
-    By checkPage = By.cssSelector("div.bottom-xs.bm-subtitle-1");
+    private By checkPage = By.cssSelector("div.bottom-xs.bm-subtitle-1");
     By someOneElseRadioButton = By.cssSelector(".ember-view.button.button-forSomeone.selected");
     By nameOfReceivesA_gift = By.cssSelector("input[type='text']");
     By events = By.cssSelector(".ember-view.bm-field.bm-select.with-icon.empty.md.with-label");
@@ -97,5 +97,13 @@ public class SenderReceiverInformationPage extends BasePage {
     public void checkPage() throws Exception {
         //checkElementStatus(checkPage, readFromFile("payment"));
     }
+
+    public String getCheckPage() {
+        return getText(checkPage);
+    }
+ public String getAssertExpected() throws Exception {
+        return readFromFile("myAccount");
+ }
+
 }
 

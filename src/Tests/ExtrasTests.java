@@ -37,7 +37,7 @@ public class ExtrasTests extends BaseTest {
         Extra_02_CheckColor();
         Extra_03_CheckErrorMessage();
         Extra_04_FooterScreenshot();
-        //Extra_05_LoadingPrintSize();
+        Extra_05_LoadingPrintSize();
     }
 
 

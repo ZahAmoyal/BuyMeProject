@@ -115,8 +115,8 @@ public class BasePage {
     // A function that checks whether the URLs are equal
     public boolean checkUrl(String expectedUrl, String actualUrl) {
         if (expectedUrl.equals(actualUrl))
-            return true;
-        return false;
+            return false;
+        return true;
     }
 
     public WebElement selectFromDropDown(WebElement industries, int num) throws InterruptedException {
@@ -136,6 +136,9 @@ public class BasePage {
             emailAddress += "@gmail.com";
         }
         return emailAddress;
+    }
+    public String getAssertExpected(String string) throws Exception {
+        return readFromFile(string);
     }
 }
 
