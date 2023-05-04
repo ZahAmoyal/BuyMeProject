@@ -7,6 +7,10 @@ import org.junit.Test;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 import static java.lang.System.currentTimeMillis;
 
 
@@ -18,8 +22,9 @@ public class HomeTest extends BaseTest{
         extentLogger = extentReport.createTest("Test_02");
         homeFlow.closePopUps();
         homeFlow.moveToLogin();
-        signUpFlow.signUpBuyMeFlow();
-        Thread.sleep(1000);
+        //signUpFlow.signUpBuyMeFlow();
+        loginFlow.loginBuyMe();
+        //Thread.sleep(1000);
         homeFlow.searchGift();
         try {
             homeFlow.checkLoginFlow();
@@ -29,7 +34,7 @@ public class HomeTest extends BaseTest{
         }
     }
     @After
-    public void afterTest() {
+    public void afterTest(){
         extentReport.flush();
     }
 }

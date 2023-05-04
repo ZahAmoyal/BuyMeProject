@@ -39,13 +39,6 @@ public class ExtraPage extends BasePage {
     }
 
 
-    //
-    public void logOut(){
-        clickMyAccount();
-        clickLogOut();
-    }
-
-
     public void clickOnTheBackButton() throws InterruptedException {
         Thread.sleep(2000);
         click(closePopUp);
@@ -73,13 +66,12 @@ public class ExtraPage extends BasePage {
         String colorString = driver.findElement(howSendText).getCssValue("color");
         String colorValue = Color.fromString(colorString).asHex();
         Assert.assertEquals(readFromFile("colorOfText"),colorValue);
-
     }
+
     // A function for asserting the receiver's and sender's names and the blessing's content
     public void assertionForBlessing() throws Exception {
         Assert.assertTrue(getText(senderAndReceiverName).contains(readFromFile("Sender")));
         Assert.assertTrue(getText(senderAndReceiverName).contains(readFromFile("Receiver")));
         Assert.assertEquals(getText(blessing),(readFromFile("Blessing")));
     }
-
 }

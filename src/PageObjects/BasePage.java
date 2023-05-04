@@ -2,7 +2,6 @@ package PageObjects;
 
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.w3c.dom.Document;
@@ -12,10 +11,9 @@ import java.io.File;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
-import static org.junit.Assert.*;
-
 
 public class BasePage {
+
 
     public WebDriver driver;
     public WebDriverWait wait;
@@ -63,7 +61,7 @@ public class BasePage {
 
     // A function for waiting for an element's visibility
     public void waitVisibility(By by) {
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         try {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
@@ -72,7 +70,6 @@ public class BasePage {
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         }
     }
-
 
     //Read from file
     public String readFromFile(String KeyData) throws Exception {
@@ -85,18 +82,6 @@ public class BasePage {
         return doc.getElementsByTagName(KeyData).item(0).getTextContent();
     }
 
-    // A function that receives an element and text string, converts the element to text and compare them using Assert
-/*    public void checkElementStatus(By actual, String expected) {
-        assertEquals(expected, getText(actual));
-    }*/
-
-
-    // A function for scrolling the page to the desired element
-    public void moveElement(WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element);
-    }
-
     // פונקצייה שמקבלת 2 מספרים - תחתון ועליון ומביאה מספר בניהם
     // A function that receives 2 random numbers - a low and a high ones - and returns a number between them
     public int randomNum(int origin, int num) {
@@ -106,10 +91,8 @@ public class BasePage {
 
     // A function that takes the page's URL and prints it (reminder: add to the report)
     public void assertURL() throws Exception {
-        //String actualURL = driver.getCurrentUrl();
         String actualURL = driver.getCurrentUrl();
         Assert.assertTrue(checkUrl(actualURL, readFromFile("siteURL")));
-        //System.out.println("Current URL is: " + actualURL);
     }
 
     // A function that checks whether the URLs are equal
@@ -121,6 +104,7 @@ public class BasePage {
 
     public WebElement selectFromDropDown(WebElement industries, int num) throws InterruptedException {
         List<WebElement> dropDown = industries.findElements(By.tagName("li"));
+        Thread.sleep(1000);
         String numValue = dropDown.get(randomNum(num, dropDown.size())).getAttribute("id");
         WebElement choose = industries.findElement(By.cssSelector("li[id=\"" + (numValue) + "\"]"));
         return choose;
@@ -129,36 +113,18 @@ public class BasePage {
     String generateRandomEmailAddress (){
         String emailAddress = "";
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
-        while (emailAddress.length() < 8) {
+        while (emailAddress.length() < 7) {
             int character = (int) (Math.random() * 26);
             emailAddress += alphabet.substring(character, character + 1);
             emailAddress += Integer.valueOf((int) (Math.random() * 99)).toString();
-            emailAddress += "@gmail.com";
         }
+        emailAddress += "@gmail.com";
         return emailAddress;
     }
     public String getAssertExpected(String string) throws Exception {
         return readFromFile(string);
     }
+
 }
-
-
-/*
-    public void selectByIndex(By elementLocation, int index) {
-        waitVisibility(elementLocation);
-        click(elementLocation);
-        WebElement combo = driver.findElement(elementLocation);
-        Select selectIndex = new Select(combo);
-        selectIndex.selectByIndex(index);
-    }
-
-    public void selectByText(By elementLocation, String text) {
-        waitVisibility(elementLocation);
-        WebElement combo = driver.findElement(elementLocation);
-        Select selectText = new Select(combo);
-        selectText.selectByValue(text);
-    }
-*/
-
 
 

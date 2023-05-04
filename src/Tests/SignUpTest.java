@@ -17,12 +17,6 @@ import static java.lang.System.currentTimeMillis;
 
 public class SignUpTest extends BaseTest {
 
-//    @Before
-//    public void beforeTest(){
-//
-//        driver.get("https://buyme.co.il/");
-//    }
-
     @Test
     public void registerToBuyMe_Test_01() throws Exception {
         extentLogger = extentReport.createTest("Test_01 - Register To Buy Me");
@@ -37,9 +31,8 @@ public class SignUpTest extends BaseTest {
     }
 
     @After
-    public void afterTest() throws IOException {
+    public void afterTest(){
         extentReport.flush();
-        Desktop.getDesktop().browse(new File("src/Data/Extent-Report-BuyMe-Project.html").toURI());
     }
 
 }

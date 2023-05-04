@@ -1,35 +1,28 @@
-
 package Tests;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
-import freemarker.template.utility.Constants;
-import org.jsoup.nodes.Node;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.NoSuchElementException;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-import static java.lang.System.currentTimeMillis;
 
-
-public class ExtrasTests extends BaseTest {
+public class ExtraTests extends BaseTest {
 
     @Before
     public void uploadExtraTest() {
         extentLogger = extentReport.createTest("ExtraTest_06");
-
     }
 
     @Test
     public void extraTest_06() throws Exception {
         homeFlow.closePopUps();
         homeFlow.moveToLogin();
-        signUpFlow.signUpBuyMeFlow();
+        //signUpFlow.signUpBuyMeFlow();
+        loginFlow.loginBuyMe();
         homeFlow.searchGift();
         chooseGiftFlow.pickBusinessFromList();
         senderReceeiverInformationFlow.senderGift();
@@ -42,17 +35,15 @@ public class ExtrasTests extends BaseTest {
 
 
     @After
-    public void afterTest() throws IOException {
+    public void afterTest(){
         extentReport.flush();
-        Desktop.getDesktop().browse(new File("src/Data/Extent-Report-BuyMe-Project.html").toURI());
-
     }
 
 
     public void Extra_01_CheckOrder() {
         try {
             extraFlow.extraFlow_PreviewBlessing();
-            extentLogger.createNode("Extra_01 - Order check").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot( "picture1")).build());
+            extentLogger.createNode("Extra_01 - Order check").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture1")).build());
         } catch (AssertionError | Exception exception) {
             extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture1")).build());
         }
@@ -74,6 +65,7 @@ public class ExtrasTests extends BaseTest {
             homeFlow.moveToLogin();
             loginFlow.extraErrorFields();
             extentLogger.createNode("Extra_03_CheckErrorMessage").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture3")).build());
+            Thread.sleep(1000);
         } catch (AssertionError | Exception exception) {
             extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture3")).build());
         }
@@ -81,25 +73,20 @@ public class ExtrasTests extends BaseTest {
 
     public void Extra_04_FooterScreenshot() {
         try {
-
-            extentLogger.createNode("Extra_04_FooterScreenshot").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture4")).build());
+            chooseGiftFlow.screenExtra();
+            extentLogger.createNode("Extra_04_FooterScreenshot").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture4")).build());
         } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture4")).build());
+            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture4")).build());
         }
     }
 
 
-    public void Extra_05_LoadingPrintSize() {
+    public void Extra_05_LoadingPrintSize(){
         try {
-            //extentLogger = extentReport.createTest("Extra_04 - Footer screenshot");
             homeFlow.extra_Loading();
-            extentLogger.createNode("Extra_05_LoadingPrintSize").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture5")).build());
+            extentLogger.createNode("Extra_05_LoadingPrintSize").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture5")).build());
         } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("picture5")).build());
+            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture5")).build());
         }
     }
 }
-
-
-
-

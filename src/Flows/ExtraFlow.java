@@ -23,9 +23,10 @@ public class ExtraFlow {
     }
 
 
-    public void logOutAndAssertErrorMessage(){
+    public void logOutAndAssertErrorMessage() {
         extraPage.goHomePage();
         extraPage.clickMyAccount();
         extraPage.clickLogOut();
     }
 }
+

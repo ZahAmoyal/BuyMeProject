@@ -11,13 +11,12 @@ public class LoginFlow {
         loginPage = new LoginPage(driver);
     }
 
-
-
     public void loginBuyMe() throws Exception {
         loginPage.emailField();
         loginPage.passwordField();
         loginPage.loginToBuyMe();
-        //Thread.sleep(100000);
+        Thread.sleep(30000);
+        loginPage.waitToUrl();
     }
 
     public void extraErrorFields() throws Exception {

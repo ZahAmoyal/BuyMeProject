@@ -21,11 +21,6 @@ public class ChooseGiftFlow {
         Assert.assertEquals(chooseGiftPage.getTitle(),chooseGiftPage.getAssertExpected());
     }
 
-   /* public void checkChooseGiftFlow() throws Exception {
-        chooseGiftPage.checkPage();
-
-    }*/
-
     public void screenExtra(){
         chooseGiftPage.scrollAndTakeScreenShot();
     }

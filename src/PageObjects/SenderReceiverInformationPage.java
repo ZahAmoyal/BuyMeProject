@@ -3,6 +3,7 @@ package PageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.io.File;
 import java.util.List;
 
@@ -19,17 +20,17 @@ public class SenderReceiverInformationPage extends BasePage {
     }
 
     private By checkPage = By.cssSelector("div.bottom-xs.bm-subtitle-1");
-    By someOneElseRadioButton = By.cssSelector(".ember-view.button.button-forSomeone.selected");
-    By nameOfReceivesA_gift = By.cssSelector("input[type='text']");
-    By events = By.cssSelector(".ember-view.bm-field.bm-select.with-icon.empty.md.with-label");
-    By uploadPicture = By.cssSelector("input[type='file']");
-    By nameOfSender = By.cssSelector("[data-parsley-group='voucher-greeting']");
-    By submitButton = By.cssSelector("[type='submit']");
-    By nowRadioButton = By.cssSelector("div.ember-view.button.button-now.selected");
-    By sms = By.cssSelector("svg[gtm='method-sms']");
-    By phoneNumberReceiver = By.id("sms");
-    By continuePaymentButton = By.cssSelector("[type='submit']");
-    By phoneNumberOfTheSender = By.cssSelector("input[placeholder='מספר נייד']");
+    final By someOneElseRadioButton = By.cssSelector(".ember-view.button.button-forSomeone.selected");
+    final By nameOfReceivesA_gift = By.cssSelector("input[type='text']");
+    final By events = By.cssSelector(".ember-view.bm-field.bm-select.with-icon.empty.md.with-label");
+    final By uploadPicture = By.cssSelector("input[type='file']");
+    final By nameOfSender = By.cssSelector("[data-parsley-group='voucher-greeting']");
+    final By submitButton = By.cssSelector("[type='submit']");
+    final By nowRadioButton = By.cssSelector("div.ember-view.button.button-now.selected");
+    final By sms = By.cssSelector("svg[gtm='method-sms']");
+    final By phoneNumberReceiver = By.id("sms");
+    final By continuePaymentButton = By.cssSelector("[type='submit']");
+    final By phoneNumberOfTheSender = By.cssSelector("input[placeholder='מספר נייד']");
 
     // A function for checking whether an element was chosen: if it was, it does nothing; if it wasn't, it clicks the element
     public void isSelected_someOneElse() {
@@ -47,7 +48,7 @@ public class SenderReceiverInformationPage extends BasePage {
         Thread.sleep(500);
         WebElement events = driver.findElement(By.cssSelector(".ember-view.bm-field.bm-select.show-options.with-icon.empty.md.with-label"));
         List<WebElement> eventList = events.findElements(By.cssSelector(".ember-view.bm-select-option"));
-        int num = (randomNum(1, eventList.size()));
+        int num = (randomNum(2, eventList.size()));
         String value = eventList.get(num).getAttribute("value");
         WebElement chosenEvent = events.findElement(By.cssSelector("li[value='" + value + "']"));
         chosenEvent.click();
@@ -93,17 +94,14 @@ public class SenderReceiverInformationPage extends BasePage {
         click(submitButton);
     }
 
-    // A function for asserting whether I reached the correct page, receiving an element and a text string and checking whether it exists
-    public void checkPage() throws Exception {
-        //checkElementStatus(checkPage, readFromFile("payment"));
-    }
 
     public String getCheckPage() {
         return getText(checkPage);
     }
- public String getAssertExpected() throws Exception {
+
+    public String getAssertExpected() throws Exception {
         return readFromFile("myAccount");
- }
+    }
 
 }
 
