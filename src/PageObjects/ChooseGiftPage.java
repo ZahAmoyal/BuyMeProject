@@ -1,7 +1,6 @@
 package PageObjects;
 
 import org.openqa.selenium.*;
-
 import java.util.List;
 import static org.openqa.selenium.By.tagName;
 

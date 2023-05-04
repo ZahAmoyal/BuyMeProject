@@ -1,8 +1,6 @@
 package Flows;
 
 import PageObjects.ExtraPage;
-import PageObjects.HomePage;
-import Tests.BaseTest;
 import org.openqa.selenium.WebDriver;
 
 public class ExtraFlow {

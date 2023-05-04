@@ -1,7 +1,6 @@
 package Flows;
 
 import PageObjects.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertEquals;

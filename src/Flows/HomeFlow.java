@@ -20,7 +20,6 @@ public class HomeFlow {
         homePage.clickLoginSignUpButton();
     }
 
-
     public void searchGift() throws Exception {
         do {
             homePage.chooseAnAmount();
@@ -32,10 +31,6 @@ public class HomeFlow {
 
     public void checkLoginFlow() throws Exception {
        Assert.assertEquals(homePage.getSearchText(), homePage.getAssertExpected());
-    }
-
-    public void extra_Loading() throws InterruptedException {
-        homePage.loading();
     }
 
 }

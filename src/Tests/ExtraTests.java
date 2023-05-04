@@ -5,11 +5,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-
-
 public class ExtraTests extends BaseTest {
 
     @Before

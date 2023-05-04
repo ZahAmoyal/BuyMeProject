@@ -33,9 +33,6 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Date;
 import org.openqa.selenium.WebDriver;
-import static org.monte.media.FormatKeys.*;
-import static org.monte.media.VideoFormatKeys.*;
-
 
 public class BaseTest {
 

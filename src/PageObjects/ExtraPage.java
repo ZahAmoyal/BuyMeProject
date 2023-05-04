@@ -2,8 +2,6 @@ package PageObjects;
 
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 
 

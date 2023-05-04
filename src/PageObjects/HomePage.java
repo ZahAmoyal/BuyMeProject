@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public class HomePage extends BasePage {
 
     //constructor
@@ -23,6 +24,7 @@ public class HomePage extends BasePage {
     final By searchResult = By.cssSelector(".title-xxl.bottom-md.top-none");
     private By searchText = By.cssSelector("span[class=\"text\"]");
     final By logo = By.cssSelector("img[alt=\"לוגו BUY-ME\"]");
+    By loading = By.cssSelector("[id='app-loading-img']");
 
     public void clickLoginSignUpButton() {
         click(login_SignUpButton);
@@ -46,7 +48,7 @@ public class HomePage extends BasePage {
 
     // A function for closing the popup window (not active at the moment)
     public void ifDisPopUpAppear_OnTheRightSideScreen() {
-        if (displayed(popUp) || displayed(popUp2)) {
+        if (displayed(popUp)) {
             click(popUp);
         }
     }

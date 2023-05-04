@@ -4,13 +4,6 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import org.junit.After;
 import org.junit.Test;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-
 import static java.lang.System.currentTimeMillis;
 
 
