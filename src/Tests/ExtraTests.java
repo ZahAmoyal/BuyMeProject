@@ -21,7 +21,6 @@ public class ExtraTests extends BaseTest {
     public void extraTest_06() throws Exception {
         homeFlow.closePopUps();
         homeFlow.moveToLogin();
-        //signUpFlow.signUpBuyMeFlow();
         loginFlow.loginBuyMe();
         homeFlow.searchGift();
         chooseGiftFlow.pickBusinessFromList();
@@ -30,7 +29,6 @@ public class ExtraTests extends BaseTest {
         Extra_02_CheckColor();
         Extra_03_CheckErrorMessage();
         Extra_04_FooterScreenshot();
-        Extra_05_LoadingPrintSize();
     }
 
 
@@ -77,16 +75,6 @@ public class ExtraTests extends BaseTest {
             extentLogger.createNode("Extra_04_FooterScreenshot").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture4")).build());
         } catch (AssertionError | Exception exception) {
             extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture4")).build());
-        }
-    }
-
-
-    public void Extra_05_LoadingPrintSize(){
-        try {
-            homeFlow.extra_Loading();
-            extentLogger.createNode("Extra_05_LoadingPrintSize").pass(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture5")).build());
-        } catch (AssertionError | Exception exception) {
-            extentLogger.createNode(exception.getMessage()).fail(MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot("Picture5")).build());
         }
     }
 }

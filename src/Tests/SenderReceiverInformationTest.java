@@ -20,17 +20,17 @@ public class SenderReceiverInformationTest extends BaseTest {
     @Test
     public void senderGift_05() throws Exception {
         extentLogger = extentReport.createTest("Test_05");
+        homeFlow.closePopUps();
         homeFlow.moveToLogin();
-        //signUpFlow.signUpBuyMeFlow();
         loginFlow.loginBuyMe();
         homeFlow.searchGift();
         chooseGiftFlow.pickBusinessFromList();
         senderReceeiverInformationFlow.senderGift();
         try {
             senderReceeiverInformationFlow.assertSenderReceiverInformationFlow();
-            extentLogger.log(Status.PASS, ("Test pass"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
-        } catch (NoSuchElementException e) {
-            extentLogger.log(Status.FAIL, (e.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.log(Status.PASS, ("Test pass"),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(String.valueOf(currentTimeMillis()))).build());
+        } catch (AssertionError exception) {
+            extentLogger.log(Status.FAIL, (exception.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(String.valueOf(currentTimeMillis()))).build());
         }
     }
 

@@ -17,7 +17,6 @@ public class ExtraPage extends BasePage {
     By preview = By.cssSelector("button[gtm=\"תצוגה של המתנה\"]");
     By senderAndReceiverName =By.cssSelector(".recipient-sender.bottom-md");
     By blessing = By.cssSelector(".greeting.bottom-md");
-    By footer = By.cssSelector("div.buttons");
     By closePopUp = By.cssSelector("div[aria-label='לסגור חלון פופ אפ']");
     By backButton = By.cssSelector("svg[id='chevron-right']");
     By homePageButton = By.cssSelector("img[alt=\"לוגו BUY-ME\"]");
@@ -38,26 +37,14 @@ public class ExtraPage extends BasePage {
         click(closePopUp);
     }
 
-
-    public void clickOnTheBackButton() throws InterruptedException {
-        Thread.sleep(2000);
-        click(closePopUp);
-        click(backButton);
-        waitVisibility(backButton);
-        click(backButton);
-        waitVisibility(backButton);
-        click(backButton);
-        goHomePage();
-    }
     // A function for clicking on the homepage button
     public void goHomePage() {
         click(homePageButton);
     }
 
     // A function for pressing the "view present" button, asserting the results and closing the popup
-    public void clickOnThePreviewButton() throws Exception {
+    public void clickOnThePreviewButton() {
         click(preview);
-       // Thread.sleep(1000);
     }
 
     // A function for pressing the back button, then taking the element's color and asserts it using a string value for the xml config file

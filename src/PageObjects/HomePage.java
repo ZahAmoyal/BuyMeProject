@@ -101,16 +101,5 @@ public class HomePage extends BasePage {
     public String getAssertExpected() throws Exception {
         return readFromFile("search");
     }
-
-    public void loading() {
-        WebElement element = null;
-        do {
-            driver.navigate().refresh();
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // set timeout to 10 seconds
-            element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("app-loading-img")));
-            //Thread.sleep(2000);
-        } while (element.getSize() != null);
-        System.out.println("The size of the screen is:" + element.getSize());
-    }
 }
 

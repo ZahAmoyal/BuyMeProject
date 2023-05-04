@@ -22,15 +22,13 @@ public class HomeTest extends BaseTest{
         extentLogger = extentReport.createTest("Test_02");
         homeFlow.closePopUps();
         homeFlow.moveToLogin();
-        //signUpFlow.signUpBuyMeFlow();
         loginFlow.loginBuyMe();
-        //Thread.sleep(1000);
         homeFlow.searchGift();
         try {
             homeFlow.checkLoginFlow();
-            extentLogger.log(Status.PASS, ("Test pass"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
-        } catch (AssertionError e) {
-            extentLogger.log(Status.FAIL, (e.getLocalizedMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.log(Status.PASS, ("Test pass"),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(String.valueOf(currentTimeMillis()))).build());
+        } catch (AssertionError exception) {
+            extentLogger.log(Status.FAIL, (exception.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(String.valueOf(currentTimeMillis()))).build());
         }
     }
     @After

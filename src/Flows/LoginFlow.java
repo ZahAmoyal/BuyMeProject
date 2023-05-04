@@ -16,7 +16,6 @@ public class LoginFlow {
         loginPage.passwordField();
         loginPage.loginToBuyMe();
         Thread.sleep(30000);
-        loginPage.waitToUrl();
     }
 
     public void extraErrorFields() throws Exception {

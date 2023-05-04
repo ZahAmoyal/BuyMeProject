@@ -9,6 +9,8 @@ import static java.lang.System.currentTimeMillis;
 
 public class ChooseGiftTest extends BaseTest {
 
+    public ChooseGiftTest() throws Exception {}
+
     @Test
     public void choose_A_Gift_04() throws Exception {
         extentLogger = extentReport.createTest("Choose_A_Gift_04");
@@ -18,9 +20,9 @@ public class ChooseGiftTest extends BaseTest {
         homeFlow.searchGift();
         try {
             chooseGiftFlow.pickBusinessFromList();
-            extentLogger.log(Status.PASS, ("Test pass!"), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
-        }catch (AssertionError e){
-            extentLogger.log(Status.FAIL, (e.getLocalizedMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(getClass().getTypeName()), String.valueOf(currentTimeMillis())).build());
+            extentLogger.log(Status.PASS, ("Test pass"),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(String.valueOf(currentTimeMillis()))).build());
+        }catch (AssertionError exception){
+            extentLogger.log(Status.FAIL, (exception.getMessage()), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(String.valueOf(currentTimeMillis()))).build());
         }
     }
 

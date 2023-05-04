@@ -66,7 +66,6 @@ public class BasePage {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
-
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         }
     }
@@ -82,7 +81,6 @@ public class BasePage {
         return doc.getElementsByTagName(KeyData).item(0).getTextContent();
     }
 
-    // פונקצייה שמקבלת 2 מספרים - תחתון ועליון ומביאה מספר בניהם
     // A function that receives 2 random numbers - a low and a high ones - and returns a number between them
     public int randomNum(int origin, int num) {
         Random rand = new Random();

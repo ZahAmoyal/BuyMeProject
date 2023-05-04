@@ -5,22 +5,36 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
+import org.jcodec.api.awt.AWTSequenceEncoder;
+
+import java.awt.GraphicsConfiguration;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.monte.media.Format;
+import org.monte.media.FormatKeys;
+import org.monte.media.math.Rational;
+import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.w3c.dom.Document;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Date;
+import org.openqa.selenium.WebDriver;
+import static org.monte.media.FormatKeys.*;
+import static org.monte.media.VideoFormatKeys.*;
 
 
 public class BaseTest {
@@ -43,17 +57,19 @@ public class BaseTest {
     private static String readFromFilePath = "src/Data/XmlBaseTest.xml";
 
 
-
     public static String getImagePath() {
         return imagePath;
     }
-    public static String getChromeD(){
+
+    public static String getChromeD() {
         return chromeD;
     }
-    public static String getFireFoxD(){
+
+    public static String getFireFoxD() {
         return fireFoxD;
     }
-    public static String getReadFromFilePath(){
+
+    public static String getReadFromFilePath() {
         return readFromFilePath;
     }
 
@@ -90,6 +106,7 @@ public class BaseTest {
         signUpFlow = new SignUpFlow(driver);
         extraFlow = new ExtraFlow(driver);
     }
+
 
     // This is a method that takes screenshots whenever an element is not found, and it is added to our extent report.
     // Take screenshot
@@ -128,7 +145,7 @@ public class BaseTest {
 
     public static WebDriver getDriverInstance() throws Exception {
         if (driver == null) {
-            String type=readFromFile("browzer").toLowerCase();
+            String type = readFromFile("browzer").toLowerCase();
             try {
                 if (type.equals("chrome")) {
                     System.setProperty("webdriver.chrome.driver", getChromeD());
